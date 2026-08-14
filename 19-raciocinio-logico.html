@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raciocínio Lógico | SUS É TOP</title>
+<link rel="stylesheet" href="assets/style.css?v=821">
+</head>
+<body>
+
+<main class="papel">
+
+  <header class="cabecalho">
+    <p class="eyebrow">Capítulo 19</p>
+    <h1>Raciocínio Lógico</h1>
+    <p class="sub">Proposições, conectivos, tabela-verdade, equivalências, negações, argumentos válidos e conjuntos.</p>
+  </header>
+
+  <h2>1. Proposições e conectivos</h2>
+
+<p><strong>Proposição</strong> é a sentença <strong>declarativa</strong> com valor lógico definido (V ou F). Sentenças interrogativas, exclamativas e imperativas <strong>não</strong> são proposições.</p>
+<table><thead><tr><th>Conectivo</th><th>Símbolo</th><th>Quando é FALSO</th></tr></thead><tbody>
+<tr><td>Conjunção (e)</td><td>∧</td><td>Se <strong>ao menos uma</strong> for falsa</td></tr>
+<tr><td>Disjunção (ou)</td><td>∨</td><td>Só quando <strong>ambas</strong> forem falsas</td></tr>
+<tr><td>Condicional (se… então)</td><td>→</td><td>Só quando <strong>V → F</strong></td></tr>
+<tr><td>Bicondicional (se e somente se)</td><td>↔</td><td>Quando os valores <strong>divergem</strong></td></tr>
+</tbody></table>
+<p>Uma tabela-verdade com <em>n</em> proposições simples tem <strong>2<sup>n</sup> linhas</strong>.</p>
+<p><strong>Tautologia:</strong> sempre verdadeira. <strong>Contradição:</strong> sempre falsa. <strong>Contingência:</strong> varia.</p>
+
+  <h2>2. Negações</h2>
+
+<div class="box decore"><p class="titulo">Decore</p>
+<ul><li>~(p ∧ q) = <strong>~p ∨ ~q</strong> (De Morgan)</li>
+<li>~(p ∨ q) = <strong>~p ∧ ~q</strong> (De Morgan)</li>
+<li>~(p → q) = <strong>p ∧ ~q</strong></li>
+<li>~(Todo A é B) = <strong>Algum A não é B</strong></li>
+<li>~(Algum A é B) = <strong>Nenhum A é B</strong></li></ul></div>
+<div class="box atencao"><p class="titulo">Pegadinha clássica</p>
+<p>A negação de "Todo profissional é vacinado" <strong>não</strong> é "Nenhum profissional é vacinado" (contrária), e sim "<strong>Algum</strong> profissional <strong>não</strong> é vacinado" (contraditória).</p></div>
+
+  <h2>3. Equivalências da condicional</h2>
+
+<p>Para <strong>p → q</strong>:</p>
+<ul>
+<li><strong>Contrapositiva</strong> (equivalente): ~q → ~p</li>
+<li><strong>Disjunção</strong> (equivalente): ~p ∨ q</li>
+<li><strong>Recíproca</strong> (NÃO equivalente): q → p</li>
+<li><strong>Inversa</strong> (NÃO equivalente): ~p → ~q</li>
+</ul>
+
+  <h2>4. Argumentos válidos</h2>
+
+<table><thead><tr><th>Regra</th><th>Premissas</th><th>Conclusão</th><th>Válido?</th></tr></thead><tbody>
+<tr><td><strong>Modus ponens</strong></td><td>p → q ; p</td><td>q</td><td>Sim</td></tr>
+<tr><td><strong>Modus tollens</strong></td><td>p → q ; ~q</td><td>~p</td><td>Sim</td></tr>
+<tr><td>Afirmação do consequente</td><td>p → q ; q</td><td>p</td><td><strong>Não</strong> — falácia</td></tr>
+<tr><td>Negação do antecedente</td><td>p → q ; ~p</td><td>~q</td><td><strong>Não</strong> — falácia</td></tr>
+</tbody></table>
+<div class="box dica"><p class="titulo">Exemplo</p>
+<p>"Se chove, o piso fica molhado" + "O piso não está molhado" → conclui-se validamente que <strong>não choveu</strong> (modus tollens).</p></div>
+
+  <h2>5. Conjuntos e proporcionalidade</h2>
+
+<p><strong>União:</strong> n(A ∪ B) = n(A) + n(B) − n(A ∩ B).</p>
+<p>Exemplo: em 50 profissionais, 30 têm influenza, 25 têm hepatite B e 10 têm ambas → união = 45; logo <strong>5 não têm nenhuma</strong>.</p>
+<div class="box decore"><p class="titulo">Regra de três</p>
+<p><strong>Direta:</strong> uma grandeza cresce, a outra cresce. <strong>Inversa:</strong> uma cresce, a outra diminui — mais trabalhadores, menos tempo.</p></div>
+<p>Exemplo: 3 técnicos fazem em 6 horas → 6 técnicos fazem em <strong>3 horas</strong> (inversa).</p>
+
+
+  <div class="rodape">
+    SUS É TOP · Capítulo 19 — conteúdo em nível técnico. Confira sempre o edital do seu concurso.
+  </div>
+
+</main>
+
+<script src="assets/questoes.js?v=821"></script>
+<script src="assets/questoes-enfermagem.js?v=821"></script>
+<script src="assets/questoes-enfermagem2.js?v=821"></script>
+<script src="assets/questoes-enfermagem3.js?v=821"></script>
+<script src="assets/questoes-basicas.js?v=821"></script>
+<script src="assets/questoes-enfermagem4.js?v=821"></script>
+<script src="assets/questoes-sus2.js?v=821"></script>
+<script src="assets/questoes-final.js?v=821"></script>
+<script src="assets/questoes-errado.js?v=821"></script>
+<script src="assets/dados.js?v=821"></script>
+<script src="assets/versao.js?v=821"></script>
+<script src="assets/icones.js?v=821"></script>
+<script src="assets/app.js?v=821"></script>
+</body>
+</html>

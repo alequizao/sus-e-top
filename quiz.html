@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Área de Questionário | SUS É TOP</title>
+<link rel="stylesheet" href="assets/style.css?v=821">
+<style>
+.setup{display:grid;gap:14px}
+.campo{background:var(--papel);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sombra)}
+.campo .rot{display:block;font-weight:600;color:var(--texto);margin-bottom:11px;font-size:13.5px}
+.campo .rot small{display:block;font-weight:400;color:var(--texto-fraco);font-size:11.5px;margin-top:2px}
+
+.cartao-questao{background:var(--papel);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sombra);margin-bottom:16px}
+.meta-quiz{display:flex;justify-content:space-between;font-size:11.5px;color:var(--texto-fraco);margin:9px 0 16px}
+.enunciado{font-size:17px;line-height:1.5;margin:16px 0 20px;font-weight:500}
+
+.resposta{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-resp{
+  border:0;background:var(--papel);border-radius:var(--r);padding:22px 14px;
+  font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--texto);
+  box-shadow:var(--sombra);transition:.15s;
+}
+.btn-resp:hover:not(:disabled){background:var(--menta);color:#fff;box-shadow:var(--sombra-menta)}
+.btn-resp:disabled{cursor:default;opacity:.45}
+.btn-resp.certo{background:var(--menta);color:#fff;opacity:1;box-shadow:var(--sombra-menta)}
+.btn-resp.errado{background:var(--coral);color:#fff;opacity:1}
+
+.feedback{margin-top:16px;border-radius:var(--r);padding:15px 17px;display:none}
+.feedback.on{display:block}
+.feedback.ok{background:var(--menta-claro)}
+.feedback.no{background:var(--coral-claro)}
+.feedback .cab{font-weight:700;margin-bottom:5px;font-size:13.5px}
+.feedback.ok .cab{color:var(--menta-esc)}
+.feedback.no .cab{color:var(--vermelho)}
+.feedback p{margin:0;font-size:13px}
+
+.placar-capa{
+  border-radius:var(--r-lg);padding:26px 20px;text-align:center;color:#fff;margin-bottom:16px;
+  background:linear-gradient(120deg,#2FD3A4,#1FB88F);
+}
+.placar-capa.ruim{background:linear-gradient(120deg,#FF9A8B,#FF6B6B)}
+.placar-capa .nota{font-size:54px;font-weight:800;line-height:1;margin:4px 0}
+.placar-capa .nota small{font-size:20px;font-weight:600;opacity:.85}
+.placar-capa .selo{font-size:15px;font-weight:600;margin:0;opacity:.95}
+.placar-capa .tempo{margin:6px 0 0;font-size:11.5px;opacity:.9}
+
+.rev-item{background:var(--papel);border-radius:var(--r);padding:13px 16px;margin-bottom:10px;box-shadow:var(--sombra);border-left:4px solid var(--coral)}
+.rev-item.acertou{border-left-color:var(--menta)}
+.rev-item .q{font-weight:600;margin-bottom:5px;font-size:13.5px}
+.rev-item .a{font-size:12px;color:var(--texto-fraco);margin:0}
+
+@media (max-width:520px){
+  .resposta{grid-template-columns:1fr}
+  .enunciado{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<main class="papel">
+
+  <!-- ============ CONFIGURAÇÃO ============ -->
+  <section id="tela-setup">
+    <header class="cabecalho">
+      <p class="eyebrow">Área de questionário</p>
+      <h1>Montar questionário</h1>
+      <p class="sub">Perguntas de <strong>Sim ou Não</strong>, com explicação em cada resposta.</p>
+    </header>
+
+    <div class="setup">
+
+      <div class="campo">
+        <span class="rot">Modo<small>como as questões serão escolhidas</small></span>
+        <div class="chips" id="op-modo">
+          <button class="chip sel" data-modo="todas">Todas<small>banco completo</small></button>
+          <button class="chip" data-modo="ineditas">Inéditas<small>que você nunca viu</small></button>
+          <button class="chip" data-modo="revisao">Revisão espaçada<small>as que venceram hoje</small></button>
+          <button class="chip" data-modo="erros">Caderno de erros<small>só o que você errou</small></button>
+        </div>
+      </div>
+
+      <div class="campo">
+        <span class="rot">Bloco<small>seleciona todos os capítulos da área de uma vez</small></span>
+        <div class="chips" id="op-bloco"></div>
+      </div>
+
+      <div class="campo">
+        <span class="rot">Conteúdo<small>toque para incluir ou excluir temas</small></span>
+        <div class="chips" id="op-cap"></div>
+      </div>
+
+      <div class="campo">
+        <span class="rot">Grau de dificuldade</span>
+        <div class="chips" id="op-dif">
+          <button class="chip sel" data-dif="todas">Todas</button>
+          <button class="chip" data-dif="facil">Fácil<small>conceitos diretos</small></button>
+          <button class="chip" data-dif="medio">Médio<small>letra da lei</small></button>
+          <button class="chip" data-dif="dificil">Difícil<small>pegadinhas</small></button>
+        </div>
+      </div>
+
+      <div class="campo">
+        <span class="rot">Quantidade de perguntas</span>
+        <div class="chips" id="op-qtd">
+          <button class="chip" data-qtd="5">5</button>
+          <button class="chip sel" data-qtd="10">10</button>
+          <button class="chip" data-qtd="20">20</button>
+          <button class="chip" data-qtd="30">30</button>
+          <button class="chip" data-qtd="50">50</button>
+          <button class="chip" data-qtd="0">Todas</button>
+        </div>
+        <p style="margin:12px 0 0;font-size:13px;color:var(--texto-fraco)" id="disponiveis"></p>
+      </div>
+
+      <div class="campo">
+        <span class="rot">Correção</span>
+        <div class="chips" id="op-fb">
+          <button class="chip sel" data-fb="1">Comentada<small>gabarito a cada resposta</small></button>
+          <button class="chip" data-fb="0">Simulado<small>só no final</small></button>
+        </div>
+      </div>
+
+      <button class="btn bloco" id="btn-iniciar">▶ Começar</button>
+    </div>
+  </section>
+
+  <!-- ============ PERGUNTAS ============ -->
+  <section id="tela-quiz" class="oculto">
+    <div class="prog"><i id="progresso" style="width:0%"></i></div>
+    <div class="meta-quiz">
+      <span id="contador">Pergunta 1 de 10</span>
+      <span id="placar-ao-vivo">0 acertos</span>
+    </div>
+
+    <div class="cartao-questao">
+      <div>
+        <span class="tag cap" id="tag-cap"></span>
+        <span class="tag" id="tag-dif"></span>
+      </div>
+      <p class="enunciado" id="enunciado"></p>
+    </div>
+
+    <div class="resposta">
+      <button class="btn-resp" id="btn-sim">✔ SIM</button>
+      <button class="btn-resp" id="btn-nao">✘ NÃO</button>
+    </div>
+
+    <div class="feedback" id="feedback">
+      <div class="cab" id="fb-cab"></div>
+      <p id="fb-txt"></p>
+    </div>
+
+    <button class="btn bloco oculto" id="btn-proxima" style="margin-top:20px">Próxima →</button>
+    <p style="text-align:center;margin-top:16px"><button class="btn sec" id="btn-sair" type="button">Encerrar questionário</button></p>
+  </section>
+
+  <!-- ============ RESULTADO ============ -->
+  <section id="tela-resultado" class="oculto">
+    <div class="placar-capa" id="placar-capa">
+      <p class="selo" id="selo"></p>
+      <p class="nota" id="nota">0<small>%</small></p>
+      <p class="tempo" id="resumo-linha"></p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b id="st-total">0</b><span>perguntas</span></div>
+      <div class="stat"><b id="st-acertos" style="color:var(--verde)">0</b><span>acertos</span></div>
+      <div class="stat"><b id="st-erros" style="color:var(--vermelho)">0</b><span>erros</span></div>
+    </div>
+
+    <button class="btn bloco" id="btn-refazer">Montar outro questionário</button>
+    <p style="text-align:center;margin-top:12px"><a href="revisao.html">Ir para o caderno de erros →</a></p>
+
+    <h2>Revisão das respostas</h2>
+    <div id="lista-revisao"></div>
+  </section>
+
+</main>
+
+<script src="assets/questoes.js?v=821"></script>
+<script src="assets/questoes-enfermagem.js?v=821"></script>
+<script src="assets/questoes-enfermagem2.js?v=821"></script>
+<script src="assets/questoes-enfermagem3.js?v=821"></script>
+<script src="assets/questoes-basicas.js?v=821"></script>
+<script src="assets/questoes-enfermagem4.js?v=821"></script>
+<script src="assets/questoes-sus2.js?v=821"></script>
+<script src="assets/questoes-final.js?v=821"></script>
+<script src="assets/questoes-errado.js?v=821"></script>
+<script src="assets/dados.js?v=821"></script>
+<script src="assets/versao.js?v=821"></script>
+<script src="assets/icones.js?v=821"></script>
+<script src="assets/app.js?v=821"></script>
+<script>
+(function(){
+  'use strict';
+
+  var NOME_DIF = {facil:'Fácil', medio:'Médio', dificil:'Difícil'};
+  var cfg = { modo:'todas', dif:'todas', qtd:10, fb:1 };
+  var lista = [], idx = 0, acertos = 0, historico = [], inicio = 0;
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ---------- chips de capítulo ---------- */
+  (function montarCaps(){
+    var box = $('op-cap');
+    var todos = document.createElement('button');
+    todos.className = 'chip sel'; todos.dataset.cap = 'todos'; todos.textContent = 'Todos';
+    box.appendChild(todos);
+    DADOS.CAPITULOS.forEach(function(c){
+      var el = document.createElement('button');
+      el.className = 'chip sel'; el.dataset.cap = c.n; el.textContent = c.n + '. ' + c.t;
+      box.appendChild(el);
+    });
+  })();
+
+  /* ---------- chips de bloco (SUS / Enfermagem / Básicas) ---------- */
+  (function montarBlocos(){
+    var box = $('op-bloco');
+    var todos = document.createElement('button');
+    todos.className = 'chip sel'; todos.dataset.bloco = 'todos'; todos.textContent = 'Tudo';
+    box.appendChild(todos);
+    DADOS.BLOCOS.forEach(function(b){
+      var qtd = DADOS.questoes().filter(function(q){ return b.caps.indexOf(q.c) !== -1; }).length;
+      var el = document.createElement('button');
+      el.className = 'chip'; el.dataset.bloco = b.id;
+      el.innerHTML = b.t + '<small>' + qtd + ' questões</small>';
+      box.appendChild(el);
+    });
+  })();
+
+  /* marca só os capítulos do bloco escolhido */
+  function aplicarBloco(id){
+    var alvo = id === 'todos'
+      ? DADOS.CAPITULOS.map(function(c){ return c.n; })
+      : (DADOS.BLOCOS.filter(function(b){ return b.id === id; })[0] || {}).caps || [];
+
+    document.querySelectorAll('#op-cap .chip').forEach(function(e){
+      if (e.dataset.cap === 'todos') return;
+      e.classList.toggle('sel', alvo.indexOf(Number(e.dataset.cap)) !== -1);
+    });
+    document.querySelector('#op-cap [data-cap="todos"]')
+      .classList.toggle('sel', alvo.length === DADOS.CAPITULOS.length);
+    sincronizarBloco();
+    atualizar();
+  }
+
+  /* destaca o bloco quando a seleção de capítulos coincide exatamente com ele */
+  function sincronizarBloco(){
+    var sel = caps().slice().sort(function(a,b){ return a - b; }).join(',');
+    document.querySelectorAll('#op-bloco .chip').forEach(function(e){
+      var id = e.dataset.bloco;
+      var lista = id === 'todos'
+        ? DADOS.CAPITULOS.map(function(c){ return c.n; })
+        : (DADOS.BLOCOS.filter(function(b){ return b.id === id; })[0] || {}).caps || [];
+      e.classList.toggle('sel', lista.slice().sort(function(a,b){ return a - b; }).join(',') === sel);
+    });
+  }
+
+  function caps(){
+    return [].slice.call(document.querySelectorAll('#op-cap .chip.sel'))
+      .map(function(e){ return e.dataset.cap; })
+      .filter(function(v){ return v !== 'todos'; }).map(Number);
+  }
+
+  function filtrar(){
+    return DADOS.filtrar({ caps: caps(), dif: cfg.dif, modo: cfg.modo });
+  }
+
+  function atualizar(){
+    var n = filtrar().length;
+    var txt = n + (n === 1 ? ' pergunta disponível' : ' perguntas disponíveis');
+    if (cfg.modo === 'erros' && n === 0) txt = 'Seu caderno de erros está vazio — parabéns!';
+    if (cfg.modo === 'revisao' && n === 0) txt = 'Nenhuma revisão vencida hoje. Volte amanhã 👌';
+    if (cfg.modo === 'ineditas' && n === 0) txt = 'Você já viu todas as questões desse filtro.';
+    $('disponiveis').textContent = txt;
+    $('btn-iniciar').disabled = n === 0;
+  }
+
+  /* ---------- cliques nos chips ---------- */
+  document.addEventListener('click', function(ev){
+    var alvo = ev.target.closest('.chip');
+    if (!alvo) return;
+    var grupo = alvo.parentElement;
+
+    if (grupo.id === 'op-bloco'){
+      aplicarBloco(alvo.dataset.bloco);
+      return;
+    }
+
+    if (grupo.id === 'op-cap'){
+      if (alvo.dataset.cap === 'todos'){
+        var ligar = !alvo.classList.contains('sel');
+        grupo.querySelectorAll('.chip').forEach(function(e){ e.classList.toggle('sel', ligar); });
+      } else {
+        alvo.classList.toggle('sel');
+        grupo.querySelector('[data-cap="todos"]').classList.toggle('sel', caps().length === DADOS.CAPITULOS.length);
+      }
+      sincronizarBloco();
+      atualizar();
+      return;
+    }
+
+    if (['op-modo','op-dif','op-qtd','op-fb'].indexOf(grupo.id) === -1) return;
+    grupo.querySelectorAll('.chip').forEach(function(e){ e.classList.remove('sel'); });
+    alvo.classList.add('sel');
+    if (grupo.id === 'op-modo'){ cfg.modo = alvo.dataset.modo; atualizar(); }
+    if (grupo.id === 'op-dif'){ cfg.dif = alvo.dataset.dif; atualizar(); }
+    if (grupo.id === 'op-qtd'){ cfg.qtd = parseInt(alvo.dataset.qtd,10); }
+    if (grupo.id === 'op-fb'){ cfg.fb = parseInt(alvo.dataset.fb,10); }
+  });
+
+  /* ---------- iniciar ---------- */
+  $('btn-iniciar').addEventListener('click', function(){
+    var pool = DADOS.embaralhar(filtrar().slice());
+    lista = cfg.qtd > 0 ? pool.slice(0, cfg.qtd) : pool;
+    if (!lista.length) return;
+    idx = 0; acertos = 0; historico = []; inicio = Date.now();
+    $('tela-setup').classList.add('oculto');
+    $('tela-resultado').classList.add('oculto');
+    $('tela-quiz').classList.remove('oculto');
+    render();
+    scrollTo(0,0);
+  });
+
+  function render(){
+    var q = lista[idx];
+    $('contador').textContent = 'Pergunta ' + (idx+1) + ' de ' + lista.length;
+    $('placar-ao-vivo').textContent = acertos + (acertos === 1 ? ' acerto' : ' acertos');
+    $('progresso').style.width = (idx / lista.length * 100) + '%';
+
+    var cap = DADOS.CAPITULOS.filter(function(c){ return c.n === q.c; })[0];
+    $('tag-cap').textContent = 'Cap. ' + q.c + ' — ' + (cap ? cap.t : '');
+    $('tag-dif').textContent = NOME_DIF[q.d];
+    $('tag-dif').className = 'tag ' + q.d;
+    $('enunciado').textContent = q.q;
+
+    ['btn-sim','btn-nao'].forEach(function(id){
+      var b = $(id); b.disabled = false; b.className = 'btn-resp';
+    });
+    $('feedback').className = 'feedback';
+    $('btn-proxima').classList.add('oculto');
+  }
+
+  function responder(valor){
+    var q = lista[idx];
+    var correto = (valor === q.r);
+    if (correto) acertos++;
+    historico.push({ q:q, marcou:valor, correto:correto });
+    DADOS.registrar(q, correto);
+
+    $('btn-sim').disabled = true;
+    $('btn-nao').disabled = true;
+    $('placar-ao-vivo').textContent = acertos + (acertos === 1 ? ' acerto' : ' acertos');
+
+    if (cfg.fb === 1){
+      $(q.r ? 'btn-sim' : 'btn-nao').classList.add('certo');
+      if (!correto) $(valor ? 'btn-sim' : 'btn-nao').classList.add('errado');
+      var fb = $('feedback');
+      fb.className = 'feedback on ' + (correto ? 'ok' : 'no');
+      $('fb-cab').textContent = correto
+        ? '✔ Correto — a resposta é ' + (q.r ? 'SIM' : 'NÃO') + '.'
+        : '✘ Errou — a resposta correta é ' + (q.r ? 'SIM' : 'NÃO') + '.';
+      $('fb-txt').textContent = q.e;
+      $('btn-proxima').classList.remove('oculto');
+      $('btn-proxima').textContent = (idx+1 < lista.length) ? 'Próxima →' : 'Ver resultado →';
+    } else {
+      avancar();
+    }
+  }
+
+  function avancar(){
+    idx++;
+    if (idx < lista.length) render(); else finalizar();
+  }
+
+  $('btn-sim').addEventListener('click', function(){ responder(true); });
+  $('btn-nao').addEventListener('click', function(){ responder(false); });
+  $('btn-proxima').addEventListener('click', avancar);
+  $('btn-sair').addEventListener('click', function(){
+    if (historico.length) finalizar();
+    else { $('tela-quiz').classList.add('oculto'); $('tela-setup').classList.remove('oculto'); }
+  });
+
+  document.addEventListener('keydown', function(ev){
+    if ($('tela-quiz').classList.contains('oculto')) return;
+    var k = (ev.key || '').toLowerCase();
+    if (!$('btn-sim').disabled){
+      if (k === 's' || k === '1') responder(true);
+      if (k === 'n' || k === '0') responder(false);
+    } else if ((k === 'enter' || k === ' ') && !$('btn-proxima').classList.contains('oculto')){
+      ev.preventDefault(); avancar();
+    }
+  });
+
+  function finalizar(){
+    var total = historico.length;
+    var pct = total ? Math.round(acertos/total*100) : 0;
+    var seg = Math.round((Date.now() - inicio)/1000);
+
+    $('tela-quiz').classList.add('oculto');
+    $('tela-resultado').classList.remove('oculto');
+    $('nota').innerHTML = pct + '<small>%</small>';
+    $('st-total').textContent = total;
+    $('st-acertos').textContent = acertos;
+    $('st-erros').textContent = total - acertos;
+    $('resumo-linha').textContent = 'Concluído em ' + Math.floor(seg/60) + 'min ' + (seg%60) + 's.';
+
+    var selo = $('selo');
+    if (pct >= 90) selo.textContent = '🏆 Excelente — nível aprovação';
+    else if (pct >= 70) selo.textContent = '👍 Bom — quase lá';
+    else if (pct >= 50) selo.textContent = 'Regular — revise os erros';
+    else selo.textContent = 'Hora de reler o capítulo';
+    $('placar-capa').className = 'placar-capa' + (pct < 50 ? ' ruim' : '');
+
+    var box = $('lista-revisao');
+    box.innerHTML = '';
+    historico.forEach(function(h,i){
+      var d = document.createElement('div');
+      d.className = 'rev-item' + (h.correto ? ' acertou' : '');
+      d.innerHTML =
+        '<p class="q">' + (i+1) + '. ' + h.q.q + '</p>' +
+        '<p class="a"><strong>' + (h.correto ? '✔ Você acertou' : '✘ Você respondeu ' + (h.marcou ? 'SIM' : 'NÃO')) +
+        '</strong> — gabarito: <strong>' + (h.q.r ? 'SIM' : 'NÃO') + '</strong>. ' + h.q.e + '</p>';
+      box.appendChild(d);
+    });
+
+    DADOS.salvarSessao({
+      data: new Date().toISOString(),
+      capitulos: caps(),
+      dificuldade: cfg.dif,
+      modo: cfg.modo,
+      total: total,
+      acertos: acertos,
+      segundos: seg
+    });
+
+    scrollTo(0,0);
+  }
+
+  $('btn-refazer').addEventListener('click', function(){
+    $('tela-resultado').classList.add('oculto');
+    $('tela-setup').classList.remove('oculto');
+    atualizar();
+    scrollTo(0,0);
+  });
+
+  /* ---------- parâmetros da URL: ?cap=2  |  ?modo=erros ---------- */
+  (function preSelecionar(){
+    var p = new URLSearchParams(location.search);
+    var cap = p.get('cap');
+    if (cap){
+      document.querySelectorAll('#op-cap .chip').forEach(function(e){
+        e.classList.toggle('sel', e.dataset.cap === cap);
+      });
+    }
+    var bloco = p.get('bloco');
+    if (bloco) aplicarBloco(bloco);
+
+    var modo = p.get('modo');
+    if (modo){
+      var alvo = document.querySelector('#op-modo .chip[data-modo="' + modo + '"]');
+      if (alvo){
+        document.querySelectorAll('#op-modo .chip').forEach(function(e){ e.classList.remove('sel'); });
+        alvo.classList.add('sel');
+        cfg.modo = modo;
+      }
+    }
+  })();
+
+  sincronizarBloco();
+  atualizar();
+})();
+</script>
+</body>
+</html>

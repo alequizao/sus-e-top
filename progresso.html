@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Progresso | SUS É TOP</title>
+<link rel="stylesheet" href="assets/style.css?v=821">
+<style>
+\.destaque{
+  background:linear-gradient(120deg,#2FD3A4,#1FB88F);
+  border-radius:var(--r-lg);padding:20px 22px;color:#fff;margin-bottom:18px;position:relative;overflow:hidden;
+}
+.destaque::after{content:'';position:absolute;right:-30px;bottom:-46px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.14)}
+.destaque .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.destaque .top b{font-size:15px}
+.destaque .fogo{font-size:12px;font-weight:700;background:rgba(255,255,255,.22);padding:5px 12px;border-radius:99px}
+.destaque .prog{background:rgba(255,255,255,.25)}
+.destaque .prog > i{background:#fff}
+.destaque .leg{font-size:12.5px;color:rgba(255,255,255,.85);margin:8px 0 0}
+
+.assunto{background:var(--papel);border-radius:var(--r);box-shadow:var(--sombra);padding:13px 15px;margin-bottom:10px;box-shadow:var(--sombra)}
+.assunto .l1{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:7px}
+.assunto .l1 b{font-size:14.5px}
+.assunto .pct{font-weight:800;font-size:15px}
+.assunto .l2{display:flex;justify-content:space-between;font-size:11.5px;color:var(--texto-fraco);margin-top:6px}
+.bom{color:var(--verde)} .medio{color:var(--ambar)} .ruim{color:var(--vermelho)} .nulo{color:var(--texto-fraco)}
+.assunto .prog > i.bomb{background:var(--verde)}
+.assunto .prog > i.medb{background:var(--ambar)}
+.assunto .prog > i.ruib{background:var(--vermelho)}
+.perigo{border-left:4px solid var(--vermelho)}
+</style>
+</head>
+<body>
+
+<main class="papel">
+
+  <header class="cabecalho">
+    <p class="eyebrow">Progresso</p>
+    <h1>Seu desempenho</h1>
+    <p class="sub">Estatísticas por assunto, meta diária e histórico de sessões.</p>
+  </header>
+
+  <div class="destaque">
+    <div class="top">
+      <b>Meta de hoje</b>
+      <span class="fogo" style="display:inline-flex;align-items:center;gap:5px"><span data-ico="fogo" data-ico-tam="14"></span><span id="streak">0 dias</span></span>
+    </div>
+    <div class="prog"><i id="barra-meta" style="width:0%"></i></div>
+    <p class="leg" id="leg-meta">0 de 20 questões</p>
+    <div class="chips" style="margin-top:12px" id="op-meta">
+      <button class="chip" data-meta="10">10/dia</button>
+      <button class="chip sel" data-meta="20">20/dia</button>
+      <button class="chip" data-meta="30">30/dia</button>
+      <button class="chip" data-meta="50">50/dia</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b id="s-resp">0</b><span>respondidas</span></div>
+    <div class="stat"><b id="s-apro">0%</b><span>aproveitamento</span></div>
+    <div class="stat"><b id="s-cob">0%</b><span>do banco visto</span></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="s-acer" style="color:var(--verde)">0</b><span>acertos</span></div>
+    <div class="stat"><b id="s-erro" style="color:var(--vermelho)">0</b><span>erros</span></div>
+    <div class="stat"><b id="s-cad" style="color:var(--ambar)">0</b><span>no caderno</span></div>
+  </div>
+
+  <h2>Desempenho por assunto</h2>
+  <div id="lista-assuntos"></div>
+
+  <div class="box atencao oculto" id="box-fraco">
+    <p class="titulo">Ponto mais fraco</p>
+    <p id="txt-fraco"></p>
+  </div>
+
+  <h2>Últimas sessões</h2>
+  <div id="wrap-hist">
+    <table>
+      <thead><tr><th>Quando</th><th>Modo</th><th>Nível</th><th>Resultado</th></tr></thead>
+      <tbody id="hist"></tbody>
+    </table>
+  </div>
+  <p class="vazio oculto" id="sem-hist">Nenhuma sessão registrada ainda.</p>
+
+  <h2>Aplicativo</h2>
+  <p><button class="btn oculto" id="instalar-app" type="button"><span data-ico="baixar" data-ico-tam="18"></span>Instalar o SUS É TOP no dispositivo</button></p>
+  <p style="font-size:13.5px;color:var(--texto-fraco)">O app funciona offline depois da primeira visita. No celular, você também pode usar o menu do navegador → <strong>"Adicionar à tela de início"</strong>.</p>
+  <p style="margin-top:18px"><button class="btn sec" id="btn-zerar" type="button">Apagar meu progresso</button></p>
+
+</main>
+
+<script src="assets/questoes.js?v=821"></script>
+<script src="assets/questoes-enfermagem.js?v=821"></script>
+<script src="assets/questoes-enfermagem2.js?v=821"></script>
+<script src="assets/questoes-enfermagem3.js?v=821"></script>
+<script src="assets/questoes-basicas.js?v=821"></script>
+<script src="assets/questoes-enfermagem4.js?v=821"></script>
+<script src="assets/questoes-sus2.js?v=821"></script>
+<script src="assets/questoes-final.js?v=821"></script>
+<script src="assets/questoes-errado.js?v=821"></script>
+<script src="assets/dados.js?v=821"></script>
+<script src="assets/versao.js?v=821"></script>
+<script src="assets/icones.js?v=821"></script>
+<script src="assets/app.js?v=821"></script>
+<script>
+(function(){
+  var NOME_DIF = {todas:'Todas', facil:'Fácil', medio:'Médio', dificil:'Difícil'};
+  var NOME_MODO = {todas:'Completo', ineditas:'Inéditas', revisao:'Revisão', erros:'Caderno de erros'};
+
+  function pintar(){
+    var r = DADOS.resumo();
+    document.getElementById('s-resp').textContent = r.respondidas;
+    document.getElementById('s-apro').textContent = r.aproveitamento + '%';
+    document.getElementById('s-cob').textContent = r.cobertura + '%';
+    document.getElementById('s-acer').textContent = r.acertos;
+    document.getElementById('s-erro').textContent = r.erros;
+    document.getElementById('s-cad').textContent = r.caderno;
+
+    /* meta e streak */
+    var m = DADOS.meta().diaria;
+    var f = DADOS.feitasHoje();
+    document.getElementById('barra-meta').style.width = Math.min(100, f/m*100) + '%';
+    document.getElementById('leg-meta').textContent = f + ' de ' + m + ' questões' + (f >= m ? ' — meta batida! 🎉' : '');
+    document.querySelectorAll('#op-meta .chip').forEach(function(e){
+      e.classList.toggle('sel', parseInt(e.dataset.meta,10) === m);
+    });
+    var s = DADOS.streak();
+    document.getElementById('streak').textContent = s.dias + (s.dias === 1 ? ' dia' : ' dias') +
+      (s.recorde > s.dias ? ' (recorde ' + s.recorde + ')' : '');
+
+    /* por assunto */
+    var box = document.getElementById('lista-assuntos');
+    box.innerHTML = '';
+    var pior = null;
+    DADOS.porCapitulo().forEach(function(c){
+      var pct = c.aproveitamento;
+      var cls = pct === null ? 'nulo' : (pct >= 80 ? 'bom' : pct >= 60 ? 'medio' : 'ruim');
+      var barra = pct === null ? '' : (pct >= 80 ? 'bomb' : pct >= 60 ? 'medb' : 'ruib');
+      if (pct !== null && c.respondidas >= 3 && (!pior || pct < pior.aproveitamento)) pior = c;
+
+      var d = document.createElement('div');
+      d.className = 'assunto' + (pct !== null && pct < 60 ? ' perigo' : '');
+      d.innerHTML =
+        '<div class="l1"><b>' + c.n + '. ' + c.titulo + '</b>' +
+        '<span class="pct ' + cls + '">' + (pct === null ? '—' : pct + '%') + '</span></div>' +
+        '<div class="prog"><i class="' + barra + '" style="width:' + (pct === null ? 0 : pct) + '%"></i></div>' +
+        '<div class="l2"><span>' + c.acertos + ' acertos · ' + c.erros + ' erros</span>' +
+        '<span>' + c.vistas + '/' + c.totalQuestoes + ' questões vistas</span></div>';
+      box.appendChild(d);
+    });
+
+    if (pior){
+      document.getElementById('box-fraco').classList.remove('oculto');
+      document.getElementById('txt-fraco').innerHTML =
+        'Seu menor aproveitamento é em <strong>' + pior.titulo + '</strong> (' + pior.aproveitamento + '%). ' +
+        '<a href="' + pior.arquivo + '">Reler o capítulo</a> ou <a href="quiz.html?cap=' + pior.n + '">treinar só esse tema</a>.';
+    }
+
+    /* histórico */
+    var h = DADOS.historico();
+    var corpo = document.getElementById('hist');
+    corpo.innerHTML = '';
+    h.slice(0,15).forEach(function(r){
+      var dt = new Date(r.data);
+      var pct = Math.round(r.acertos/r.total*100);
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td>' + dt.toLocaleDateString('pt-BR') + ' ' + dt.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) + '</td>' +
+        '<td>' + (NOME_MODO[r.modo] || '—') + '</td>' +
+        '<td>' + (NOME_DIF[r.dificuldade] || '—') + '</td>' +
+        '<td><strong>' + r.acertos + '/' + r.total + '</strong> (' + pct + '%)</td>';
+      corpo.appendChild(tr);
+    });
+    document.getElementById('wrap-hist').classList.toggle('oculto', h.length === 0);
+    document.getElementById('sem-hist').classList.toggle('oculto', h.length > 0);
+  }
+
+  document.getElementById('op-meta').addEventListener('click', function(ev){
+    var c = ev.target.closest('.chip');
+    if (!c) return;
+    DADOS.definirMeta(parseInt(c.dataset.meta,10));
+    pintar();
+  });
+
+  document.getElementById('btn-zerar').addEventListener('click', function(){
+    if (!confirm('Apagar todo o seu progresso (estatísticas, caderno de erros e histórico)?')) return;
+    DADOS.zerar();
+    pintar();
+  });
+
+  pintar();
+})();
+</script>
+</body>
+</html>

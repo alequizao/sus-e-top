@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apostila Completa | SUS É TOP</title>
+<link rel="stylesheet" href="assets/style.css?v=821">
+<style>
+.capa{text-align:center;padding:60px 0 40px;border-bottom:3px solid var(--azul);margin-bottom:10px}
+.capa h1{font-size:44px;letter-spacing:-1px;margin:0 0 10px}
+.capa .sub{font-size:17px;color:var(--texto-fraco);margin:0 0 26px}
+.capa ol{display:inline-block;text-align:left;max-width:520px;font-size:15.5px}
+#carregando{text-align:center;padding:50px 0;color:var(--texto-fraco)}
+.spinner{
+  width:34px;height:34px;border:3px solid var(--borda);border-top-color:var(--azul);
+  border-radius:50%;margin:0 auto 14px;animation:gira .8s linear infinite;
+}
+@keyframes gira{to{transform:rotate(360deg)}}
+.cap-bloco{border-top:1px solid var(--borda);padding-top:10px;scroll-margin-top:70px}
+.cap-bloco:first-of-type{border-top:0}
+.capa ol li{margin-bottom:9px}
+.capa ol a{
+  color:var(--texto);text-decoration:none;font-weight:500;
+  border-bottom:1px solid var(--borda);padding-bottom:2px;
+}
+.capa ol a:hover{color:var(--menta-esc);border-color:var(--menta)}
+.dica-sumario{font-size:11.5px;color:var(--texto-fraco);margin-top:18px}
+.voltar-sumario{margin:22px 0 6px;font-size:12px}
+.voltar-sumario a{text-decoration:none;font-weight:600}
+@media print{ .voltar-sumario,.dica-sumario{display:none} }
+@media print{
+  .capa{page-break-after:always;break-after:page;padding-top:120px}
+  .cap-bloco{break-before:page;page-break-before:always}
+  #carregando{display:none}
+}
+</style>
+</head>
+<body>
+
+<main class="papel">
+
+  <div class="capa">
+    <h1>SUS É TOP</h1>
+    <p class="sub">Apostila completa — Legislação e Políticas de Saúde</p>
+    <ol id="sumario"></ol>
+    <p class="dica-sumario">Toque em um capítulo para pular direto para ele.</p>
+  </div>
+
+  <div id="carregando">
+    <div class="spinner"></div>
+    Montando a apostila completa…
+  </div>
+
+  <div id="conteudo"></div>
+
+</main>
+
+<script src="assets/questoes.js?v=821"></script>
+<script src="assets/questoes-enfermagem.js?v=821"></script>
+<script src="assets/questoes-enfermagem2.js?v=821"></script>
+<script src="assets/questoes-enfermagem3.js?v=821"></script>
+<script src="assets/questoes-basicas.js?v=821"></script>
+<script src="assets/questoes-enfermagem4.js?v=821"></script>
+<script src="assets/questoes-sus2.js?v=821"></script>
+<script src="assets/questoes-final.js?v=821"></script>
+<script src="assets/questoes-errado.js?v=821"></script>
+<script src="assets/dados.js?v=821"></script>
+<script src="assets/versao.js?v=821"></script>
+<script src="assets/icones.js?v=821"></script>
+<script src="assets/app.js?v=821"></script>
+<script>
+(function(){
+  'use strict';
+
+  /* a lista vem dos capítulos cadastrados — capítulos novos entram sozinhos */
+  var CAPS = (window.DADOS && DADOS.CAPITULOS) ? DADOS.CAPITULOS : [];
+
+  var destino = document.getElementById('conteudo');
+  var sumario = document.getElementById('sumario');
+
+  /* índice clicável */
+  sumario.innerHTML = CAPS.map(function(c){
+    return '<li><a href="#cap-' + c.n + '">' + c.t + '</a></li>';
+  }).join('');
+
+  Promise.all(CAPS.map(function(c){
+    return fetch(c.arq).then(function(r){ return r.text(); }).catch(function(){ return ''; });
+  })).then(function(paginas){
+    paginas.forEach(function(html, i){
+      if (!html) return;
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var papel = doc.querySelector('.papel');
+      if (!papel) return;
+      // remove navegação e rodapé duplicado de tela
+      papel.querySelectorAll('.nav-paginas, .topbar, .assinatura, .versao-app').forEach(function(e){ e.remove(); });
+      var bloco = document.createElement('section');
+      bloco.className = 'cap-bloco';
+      bloco.id = 'cap-' + CAPS[i].n;
+      bloco.innerHTML = papel.innerHTML;
+
+      var voltar = document.createElement('p');
+      voltar.className = 'voltar-sumario no-print';
+      voltar.innerHTML = '<a href="#sumario">↑ voltar ao índice</a>';
+      bloco.appendChild(voltar);
+
+      destino.appendChild(bloco);
+    });
+    document.getElementById('carregando').remove();
+    if (window.ICO) ICO.hidratar(destino);
+  }).catch(function(){
+    document.getElementById('carregando').innerHTML =
+      '<p><strong>Não foi possível montar a apostila.</strong><br>' +
+      'Abra esta página pelo endereço do site (http/https), e não como arquivo local.</p>' +
+      '<p style="margin-top:14px"><a href="index.html">← Voltar ao índice</a></p>';
+  });
+})();
+</script>
+</body>
+</html>

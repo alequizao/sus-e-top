@@ -1,0 +1,141 @@
+/* SUS É TOP — CONHECIMENTOS ESPECÍFICOS (parte 4) — aprofundamento
+   Reforça os capítulos 8 a 17 com itens de nível técnico e pegadinhas de banca. */
+
+window.BANCO_QUESTOES = (window.BANCO_QUESTOES || []).concat([
+
+/* ---------- 8 — BIOSSEGURANÇA (aprofundamento) ---------- */
+{c:8,d:'dificil',r:true,q:'A antissepsia cirúrgica das mãos com preparação alcoólica dispensa a escovação, desde que as mãos estejam previamente limpas e secas.',e:'A escovação vigorosa lesa a pele e aumenta a descamação, elevando a carga microbiana.'},
+{c:8,d:'medio',r:true,q:'Antissepsia é o procedimento realizado sobre tecido vivo, ao passo que desinfecção se aplica a superfícies e artigos inanimados.',e:'Assepsia é o conjunto de medidas que impede a chegada de microrganismos a local que não os contenha.'},
+{c:8,d:'dificil',r:true,q:'A clorexidina apresenta efeito residual prolongado, propriedade que a torna preferível ao álcool isolado na antissepsia da pele para inserção de cateter central.',e:'Recomenda-se clorexidina alcoólica a 0,5% ou 2%.'},
+{c:8,d:'medio',r:false,q:'O uso de luvas estéreis é obrigatório para a administração de medicamento por via intramuscular.',e:'Errado. Basta a luva de procedimento; a estéril é reservada a procedimentos invasivos que exijam técnica asséptica.'},
+{c:8,d:'dificil',r:true,q:'O avental utilizado em precaução de contato deve ser removido dentro do quarto, antes da saída, e descartado no local apropriado.',e:'Evita a dispersão de microrganismos para o corredor e outras áreas.'},
+{c:8,d:'medio',r:true,q:'Óculos de proteção e protetor facial devem ser utilizados sempre que houver risco de respingo de sangue ou fluidos corporais em mucosa ocular.',e:'Integra as precauções padrão.'},
+{c:8,d:'dificil',r:true,q:'A esterilização por óxido de etileno e por peróxido de hidrogênio em plasma são métodos a baixa temperatura, indicados para materiais termossensíveis.',e:'O óxido de etileno exige aeração pelo risco de toxicidade residual.'},
+{c:8,d:'medio',r:true,q:'O expurgo é a área destinada ao recebimento e à limpeza dos artigos contaminados, sendo o fluxo do CME sempre unidirecional, da área suja para a limpa.',e:'O fluxo unidirecional impede a recontaminação do material processado.'},
+{c:8,d:'dificil',r:true,q:'A validade da esterilização depende da integridade da embalagem, das condições de armazenamento e do transporte, e não apenas do prazo impresso.',e:'Embalagem úmida, rasgada ou perfurada invalida o processo, ainda que dentro do prazo.'},
+{c:8,d:'medio',r:false,q:'O uso do mesmo par de luvas para atender dois pacientes é aceitável quando eles ocupam o mesmo quarto e têm o mesmo diagnóstico.',e:'Errado. As luvas são de uso individual por paciente e por procedimento.'},
+{c:8,d:'dificil',r:true,q:'A profilaxia pós-exposição ao HIV, quando indicada, é realizada com esquema antirretroviral por 28 dias.',e:'O acompanhamento sorológico do profissional se estende por meses após o acidente.'},
+{c:8,d:'medio',r:true,q:'O paciente em precaução por aerossóis que precise ser transportado deve usar máscara cirúrgica durante todo o trajeto.',e:'O paciente usa máscara cirúrgica; o profissional é que usa N95.'},
+{c:8,d:'dificil',r:true,q:'Superfícies próximas ao paciente, como grades de leito, mesa de cabeceira e painel de monitor, são consideradas áreas de alto toque e exigem desinfecção frequente.',e:'São reservatórios importantes na transmissão cruzada.'},
+{c:8,d:'medio',r:true,q:'O hipoclorito de sódio é utilizado na desinfecção de superfícies, sendo inativado por matéria orgânica e corrosivo para metais.',e:'Por isso a limpeza prévia é obrigatória.'},
+{c:8,d:'dificil',r:false,q:'A varredura seca é o método recomendado para a limpeza de pisos em áreas assistenciais.',e:'Errado. A varredura seca é proibida em áreas de saúde: dispersa partículas. Usa-se varredura úmida.'},
+
+/* ---------- 9 — SINAIS VITAIS (aprofundamento) ---------- */
+{c:9,d:'dificil',r:true,q:'O pulso filiforme caracteriza-se por ser fraco e de difícil palpação, sendo achado frequente no choque hipovolêmico.',e:'Pulso cheio ou amplo sugere hipertensão ou estados hiperdinâmicos.'},
+{c:9,d:'medio',r:true,q:'Denomina-se pulso arrítmico aquele cujos intervalos entre os batimentos são irregulares.',e:'Exige contagem por um minuto inteiro e, frequentemente, aferição apical.'},
+{c:9,d:'dificil',r:true,q:'A febre em paciente idoso pode estar ausente mesmo em infecções graves, razão pela qual a ausência de febre não afasta o diagnóstico.',e:'A resposta térmica é atenuada com a idade.'},
+{c:9,d:'medio',r:true,q:'A avaliação da dor deve considerar localização, intensidade, qualidade, duração, fatores de melhora e piora e irradiação.',e:'Em pacientes que não se comunicam, usam-se escalas comportamentais.'},
+{c:9,d:'dificil',r:true,q:'Em pacientes incapazes de verbalizar, como os sedados, a avaliação da dor pode ser feita por escalas comportamentais que consideram expressão facial, movimentos e adaptação ao ventilador.',e:'Exemplos: BPS e CPOT.'},
+{c:9,d:'medio',r:true,q:'A perfusão periférica pode ser avaliada pelo tempo de enchimento capilar, considerado normal quando inferior a 3 segundos.',e:'Prolongamento sugere baixo débito ou vasoconstrição.'},
+{c:9,d:'dificil',r:true,q:'A pressão arterial média pode ser estimada pela fórmula: diastólica somada a um terço da pressão de pulso.',e:'Valores abaixo de 65 mmHg indicam perfusão tecidual comprometida.'},
+{c:9,d:'medio',r:false,q:'O oxímetro de pulso mede diretamente a pressão parcial de oxigênio no sangue arterial.',e:'Errado. Mede a SATURAÇÃO da hemoglobina, não a pressão parcial, que é obtida pela gasometria.'},
+{c:9,d:'dificil',r:true,q:'A intoxicação por monóxido de carbono pode produzir leitura de oximetria falsamente elevada, pois o aparelho não distingue a carboxi-hemoglobina da oxi-hemoglobina.',e:'Nessas situações, a gasometria com cooximetria é necessária.'},
+{c:9,d:'medio',r:true,q:'A hipertensão do avental branco caracteriza-se por valores elevados no consultório e normais fora dele, o que justifica a medida residencial ou ambulatorial.',e:'A hipertensão mascarada é o inverso.'},
+{c:9,d:'dificil',r:true,q:'Recomenda-se aferir a pressão nos dois braços na avaliação inicial, adotando-se como referência o de maior valor nas medidas subsequentes.',e:'Diferenças persistentes acima de 15 mmHg sugerem doença arterial.'},
+{c:9,d:'medio',r:true,q:'A dispneia paroxística noturna caracteriza-se por episódios de falta de ar que despertam o paciente durante o sono, sendo sugestiva de insuficiência cardíaca.',e:'Distingue-se da ortopneia pela ocorrência súbita durante o sono.'},
+
+/* ---------- 10 — MEDICAMENTOS (aprofundamento) ---------- */
+{c:10,d:'dificil',r:true,q:'A insulina regular tem início de ação rápido e a insulina NPH tem ação intermediária, sendo esta de aspecto leitoso.',e:'A regular é límpida. Ao misturar na mesma seringa, aspira-se primeiro a regular.'},
+{c:10,d:'dificil',r:true,q:'Ao preparar mistura de insulinas na mesma seringa, aspira-se primeiro a insulina de aspecto límpido e depois a leitosa.',e:'Evita contaminar o frasco da regular com a suspensão da NPH. Mnemônico: "claro antes de turvo".'},
+{c:10,d:'medio',r:true,q:'Frascos de insulina em uso podem ser mantidos em temperatura ambiente por período determinado pelo fabricante, ao passo que os frascos de reserva permanecem refrigerados.',e:'Nunca congelar. Não expor à luz solar direta.'},
+{c:10,d:'dificil',r:true,q:'Medicamentos fotossensíveis, como o nitroprussiato de sódio, exigem proteção da luz durante o preparo e a infusão.',e:'A degradação gera produtos tóxicos.'},
+{c:10,d:'medio',r:true,q:'A via retal é alternativa quando o paciente apresenta vômitos ou não pode receber medicação oral, sendo contraindicada em diarreia e lesões anorretais.',e:'A absorção é irregular.'},
+{c:10,d:'dificil',r:true,q:'A administração de medicamento por via endovenosa em bólus rápido, quando não indicada, pode provocar toxicidade aguda por pico plasmático elevado.',e:'Sempre observar o tempo de infusão prescrito.'},
+{c:10,d:'medio',r:false,q:'É permitido reaproveitar sobra de medicamento em ampola aberta para outro paciente, desde que armazenada sob refrigeração.',e:'Errado. Ampolas são de dose única; sobras devem ser descartadas.'},
+{c:10,d:'dificil',r:true,q:'A necessidade de diluição, o diluente compatível e a estabilidade após reconstituição devem ser verificados na bula ou no protocolo institucional antes do preparo.',e:'Diluente incompatível pode precipitar o fármaco.'},
+{c:10,d:'medio',r:true,q:'A identificação do frasco de soro em infusão deve conter nome do paciente, medicamento, dose, volume, velocidade e horário de início.',e:'Permite conferência por qualquer membro da equipe.'},
+{c:10,d:'dificil',r:true,q:'Na administração de antibiótico por via endovenosa, a lavagem do acesso antes e após reduz o risco de incompatibilidade com outras soluções em curso.',e:'Usa-se em geral solução fisiológica, conforme compatibilidade.'},
+{c:10,d:'medio',r:true,q:'A técnica de administração de medicamento por via oftálmica prevê instilação no saco conjuntival inferior, sem tocar o olho com o conta-gotas.',e:'Havendo mais de um colírio, respeita-se intervalo entre eles.'},
+{c:10,d:'dificil',r:true,q:'Para administrar 750 mg de um medicamento cujo frasco contém 1,5 g diluído em 6 mL, devem ser aspirados 3 mL.',e:'1,5 g = 1.500 mg em 6 mL; 750 mg correspondem à metade, ou seja, 3 mL.'},
+{c:10,d:'dificil',r:true,q:'Para infundir 2.000 mL em 24 horas em equipo macrogotas, o gotejamento é de aproximadamente 28 gotas por minuto.',e:'2.000 ÷ (24 × 3) = 2.000 ÷ 72 = 27,7.'},
+{c:10,d:'dificil',r:true,q:'Uma prescrição de 1.500 mL em 12 horas corresponde, em microgotas, a 125 microgotas por minuto.',e:'Microgotas por minuto = volume ÷ horas = 1.500 ÷ 12.'},
+{c:10,d:'medio',r:true,q:'Se um frasco de 500 mL está correndo a 21 gotas por minuto, o tempo de infusão será de aproximadamente 8 horas.',e:'Horas = volume ÷ (gotas × 3) = 500 ÷ 63 ≈ 7,9.'},
+
+/* ---------- 11 — CURATIVOS (aprofundamento) ---------- */
+{c:11,d:'dificil',r:true,q:'O desbridamento pode ser cirúrgico, mecânico, autolítico, enzimático ou biológico, sendo o cirúrgico o mais rápido.',e:'O autolítico é o mais seletivo, porém o mais lento.'},
+{c:11,d:'medio',r:true,q:'Tecido de esfacelo apresenta-se amarelado, fibrinoso e aderido, ao passo que a necrose de coagulação forma escara preta e endurecida.',e:'Ambos precisam ser removidos para que a cicatrização avance.'},
+{c:11,d:'dificil',r:true,q:'A escara seca e estável em calcâneo, sem sinais de infecção, pode ser mantida como barreira biológica, evitando-se o desbridamento imediato.',e:'Conduta recomendada quando não há flutuação, eritema ou drenagem.'},
+{c:11,d:'medio',r:true,q:'A maceração da pele perilesional decorre do excesso de umidade e pode ser prevenida com cobertura adequada e uso de protetores cutâneos.',e:'A pele macerada fica esbranquiçada e friável.'},
+{c:11,d:'dificil',r:true,q:'A troca da cobertura deve ser definida pela saturação e pelo tipo de produto, e não apenas por rotina fixa de horário.',e:'Trocas desnecessárias lesam o tecido neoformado.'},
+{c:11,d:'medio',r:true,q:'Na queimadura de segundo grau há formação de flictenas (bolhas) e dor intensa, com acometimento da epiderme e de parte da derme.',e:'Primeiro grau atinge só a epiderme; terceiro grau, toda a pele, sendo indolor pela destruição das terminações nervosas.'},
+{c:11,d:'dificil',r:true,q:'Feridas neoplásicas costumam demandar controle de odor e de sangramento, sendo o carvão ativado e as coberturas hemostáticas recursos frequentes.',e:'O foco é o conforto e a qualidade de vida.'},
+{c:11,d:'medio',r:true,q:'O registro do curativo deve descrever localização, dimensões, aspecto do leito, exsudato, pele perilesional, cobertura utilizada e resposta do paciente.',e:'Permite avaliar a evolução ao longo do tempo.'},
+
+/* ---------- 12 — VACINAÇÃO (aprofundamento) ---------- */
+{c:12,d:'dificil',r:true,q:'A vacina pentavalente protege contra difteria, tétano, coqueluche, hepatite B e infecções por Haemophilus influenzae tipo b.',e:'Aplicada por via intramuscular no vasto lateral da coxa no lactente.'},
+{c:12,d:'medio',r:true,q:'A vacina poliomielite inativada (VIP) é injetável, ao passo que a vacina oral (VOP) contém vírus atenuado.',e:'O esquema brasileiro atual privilegia a forma inativada.'},
+{c:12,d:'dificil',r:true,q:'A vacina dupla adulto (dT) deve ter reforço a cada 10 anos, sendo antecipado em caso de ferimento com risco de tétano quando a última dose ultrapassar 5 anos.',e:'Regra clássica de conduta em ferimentos.'},
+{c:12,d:'medio',r:true,q:'A vacina influenza é sazonal e sua composição é revista anualmente, o que justifica a necessidade de dose a cada ano.',e:'Prioriza grupos de risco na campanha nacional.'},
+{c:12,d:'dificil',r:true,q:'Após a reconstituição, os frascos multidose de vacinas têm prazo de validade reduzido, definido pelo fabricante, contado a partir da abertura.',e:'O horário da reconstituição deve ser anotado no frasco.'},
+{c:12,d:'medio',r:true,q:'A sala de vacinação deve dispor de material para atendimento a eventos adversos imediatos, incluindo reação anafilática.',e:'Recomenda-se observar o vacinado por alguns minutos após a aplicação.'},
+{c:12,d:'dificil',r:true,q:'Abscesso, linfadenite supurada e reações locais intensas após BCG configuram eventos adversos que devem ser notificados e avaliados.',e:'Podem decorrer de técnica incorreta, como aplicação subcutânea em vez de intradérmica.'},
+{c:12,d:'medio',r:false,q:'A vacina deve ser aplicada mesmo quando o frasco não apresenta rótulo legível, desde que o profissional saiba identificar o produto pela cor.',e:'Errado. Frasco sem identificação legível deve ser descartado.'},
+{c:12,d:'dificil',r:true,q:'Em falta de energia elétrica, o refrigerador deve ser mantido fechado, monitorando-se a temperatura, e as vacinas transferidas para caixa térmica caso o limite superior seja ameaçado.',e:'A abertura desnecessária acelera a perda de estabilidade térmica.'},
+
+/* ---------- 13 — URGÊNCIA (aprofundamento) ---------- */
+{c:13,d:'dificil',r:true,q:'A cadeia de sobrevivência extra-hospitalar do adulto compreende: reconhecimento e acionamento, RCP precoce, desfibrilação rápida, suporte avançado e cuidados pós-parada.',e:'Cada elo perdido reduz drasticamente a sobrevida.'},
+{c:13,d:'medio',r:true,q:'A cada minuto sem RCP e desfibrilação, a chance de sobrevivência da vítima em fibrilação ventricular cai significativamente.',e:'Daí a importância do acesso público a desfibriladores.'},
+{c:13,d:'dificil',r:true,q:'Na RCP com dispositivo bolsa-válvula-máscara por dois socorristas, um realiza a vedação da máscara com as duas mãos e o outro comprime a bolsa.',e:'A vedação inadequada é a principal causa de ventilação ineficaz.'},
+{c:13,d:'medio',r:true,q:'A ventilação excessiva durante a RCP é prejudicial, pois aumenta a pressão intratorácica e reduz o retorno venoso.',e:'Cada ventilação deve durar cerca de 1 segundo e apenas elevar visivelmente o tórax.'},
+{c:13,d:'dificil',r:true,q:'O retorno da circulação espontânea é sugerido por presença de pulso, elevação abrupta do dióxido de carbono exalado e movimentos respiratórios.',e:'Após o retorno, iniciam-se os cuidados pós-parada.'},
+{c:13,d:'medio',r:true,q:'Na avaliação primária do trauma segue-se a sequência que prioriza via aérea com controle cervical, respiração, circulação, estado neurológico e exposição.',e:'Sequência ABCDE.'},
+{c:13,d:'dificil',r:true,q:'A escala de coma de Glasgow avalia abertura ocular, resposta verbal e resposta motora, variando de 3 a 15 pontos.',e:'Escore igual ou inferior a 8 indica necessidade de via aérea definitiva.'},
+{c:13,d:'medio',r:true,q:'Diante de suspeita de fratura, o membro deve ser imobilizado incluindo as articulações acima e abaixo do foco.',e:'Avaliar pulso, perfusão e sensibilidade antes e após a imobilização.'},
+{c:13,d:'dificil',r:true,q:'Em amputação traumática, o segmento amputado deve ser envolvido em compressa úmida com soro fisiológico, colocado em saco plástico e este em recipiente com gelo, sem contato direto com o gelo.',e:'O contato direto congela e inviabiliza o reimplante.'},
+{c:13,d:'medio',r:true,q:'Em caso de objeto encravado, ele não deve ser removido no local, devendo ser estabilizado para o transporte.',e:'A remoção pode provocar hemorragia incontrolável.'},
+{c:13,d:'dificil',r:true,q:'Na suspeita de intoxicação exógena, não se deve provocar vômito de rotina, especialmente em produtos cáusticos ou derivados de petróleo.',e:'O risco de lesão esofágica adicional e de broncoaspiração supera o benefício.'},
+{c:13,d:'medio',r:true,q:'A posição lateral de segurança é indicada para vítima inconsciente que respira normalmente e não tem suspeita de trauma.',e:'Previne a broncoaspiração.'},
+
+/* ---------- 14 — MULHER E CRIANÇA (aprofundamento) ---------- */
+{c:14,d:'dificil',r:true,q:'A regra de Naegele estima a data provável do parto somando sete dias ao primeiro dia da última menstruação e subtraindo três meses.',e:'Considera ciclo regular de 28 dias.'},
+{c:14,d:'medio',r:true,q:'Os movimentos fetais costumam ser percebidos pela gestante entre a 18ª e a 20ª semana em primigestas.',e:'Multíparas costumam perceber mais cedo.'},
+{c:14,d:'dificil',r:true,q:'A tipagem sanguínea e o fator Rh devem ser solicitados no pré-natal, e gestantes Rh negativo com parceiro Rh positivo exigem seguimento com Coombs indireto.',e:'A imunoglobulina anti-D previne a aloimunização.'},
+{c:14,d:'medio',r:true,q:'O rastreamento de sífilis e HIV deve ser realizado no pré-natal e repetido no terceiro trimestre e no momento do parto.',e:'A sífilis congênita é agravo de notificação compulsória e evitável.'},
+{c:14,d:'dificil',r:true,q:'O contato pele a pele imediato e a amamentação na primeira hora de vida são práticas recomendadas por favorecerem o vínculo e a manutenção da temperatura do recém-nascido.',e:'Integram as boas práticas de atenção ao parto.'},
+{c:14,d:'medio',r:true,q:'O clampeamento oportuno do cordão umbilical, após cessarem as pulsações, aumenta as reservas de ferro do recém-nascido.',e:'Recomendado em recém-nascidos com boa vitalidade.'},
+{c:14,d:'dificil',r:true,q:'A icterícia que surge nas primeiras 24 horas de vida é considerada patológica e exige investigação.',e:'A icterícia fisiológica costuma surgir após o segundo dia.'},
+{c:14,d:'medio',r:true,q:'O aleitamento sob livre demanda é recomendado, não se estabelecendo intervalos ou duração fixos para as mamadas.',e:'A pega e o ganho de peso são os melhores indicadores de adequação.'},
+{c:14,d:'dificil',r:true,q:'A introdução alimentar deve iniciar aos 6 meses, mantendo-se o leite materno, com alimentos amassados e sem adição de açúcar e sal.',e:'Não se recomenda açúcar antes dos 2 anos.'},
+{c:14,d:'medio',r:true,q:'A terapia de reidratação oral é a medida inicial no manejo da diarreia aguda sem desidratação grave em crianças.',e:'A via endovenosa é reservada à desidratação grave ou à falha da via oral.'},
+{c:14,d:'dificil',r:true,q:'São sinais gerais de perigo em crianças, segundo a estratégia AIDPI: não consegue beber ou mamar, vomita tudo, convulsões e letargia ou inconsciência.',e:'A presença de qualquer um deles indica referência urgente.'},
+{c:14,d:'medio',r:true,q:'A caderneta de vacinação da criança deve ser conferida em toda oportunidade de contato com o serviço de saúde.',e:'A busca ativa de faltosos é atribuição da equipe.'},
+
+/* ---------- 15 — ADULTO E IDOSO (aprofundamento) ---------- */
+{c:15,d:'medio',r:true,q:'A adesão ao tratamento da hipertensão envolve medidas não farmacológicas, como redução do sal, controle do peso, atividade física e cessação do tabagismo.',e:'O consumo excessivo de álcool eleva a pressão arterial.'},
+{c:15,d:'dificil',r:true,q:'A hemoglobina glicada reflete o controle glicêmico médio dos últimos dois a três meses.',e:'Não substitui a automonitorização, que capta variações diárias.'},
+{c:15,d:'medio',r:true,q:'A insuficiência cardíaca descompensada cursa com dispneia, edema de membros inferiores, turgência jugular e ganho rápido de peso.',e:'O controle diário do peso é medida útil de monitoramento.'},
+{c:15,d:'dificil',r:true,q:'A doença renal crônica é frequentemente assintomática em fases iniciais, sendo hipertensão e diabetes suas principais causas.',e:'O rastreamento se dá pela creatinina com estimativa de filtração glomerular e pela albuminúria.'},
+{c:15,d:'medio',r:true,q:'A DPOC cursa com dispneia progressiva, tosse crônica e limitação ao fluxo aéreo, tendo o tabagismo como principal fator de risco.',e:'A cessação do tabagismo é a medida que mais altera a evolução.'},
+{c:15,d:'dificil',r:true,q:'A avaliação do risco de broncoaspiração no idoso deve preceder a oferta de dieta por via oral, especialmente após acidente vascular cerebral.',e:'A disfagia é causa frequente de pneumonia aspirativa.'},
+{c:15,d:'medio',r:true,q:'A contenção física do idoso deve ser medida excepcional, prescrita, por tempo determinado e com monitoramento, jamais recurso de rotina.',e:'Aumenta o risco de lesão, delirium e imobilidade.'},
+{c:15,d:'dificil',r:true,q:'O delirium caracteriza-se por início agudo, flutuação do nível de consciência e alteração da atenção, sendo frequentemente desencadeado por infecção, dor ou medicamentos.',e:'Difere da demência, de instalação insidiosa e curso progressivo.'},
+{c:15,d:'medio',r:true,q:'A violência contra a pessoa idosa inclui as formas física, psicológica, financeira, sexual, negligência e abandono, e é de notificação compulsória.',e:'A negligência é a forma mais frequentemente identificada nos serviços.'},
+{c:15,d:'dificil',r:true,q:'A sarcopenia, caracterizada pela perda de massa e força muscular, associa-se a quedas, fragilidade e perda de autonomia no idoso.',e:'Exercício resistido e aporte proteico adequado são medidas de enfrentamento.'},
+
+/* ---------- 16 — ÉTICA (aprofundamento) ---------- */
+{c:16,d:'medio',r:true,q:'O profissional de enfermagem deve prestar assistência livre de qualquer forma de discriminação, independentemente de condição social, credo, etnia, orientação sexual ou identidade de gênero.',e:'Princípio fundamental do Código de Ética.'},
+{c:16,d:'dificil',r:true,q:'É vedado ao profissional de enfermagem executar prescrição de qualquer natureza que comprometa a segurança do paciente.',e:'A recusa fundamentada é dever, e não faculdade.'},
+{c:16,d:'medio',r:true,q:'O abandono de plantão sem a devida substituição e comunicação configura infração ética e pode acarretar responsabilização.',e:'A passagem de plantão é ato de continuidade do cuidado.'},
+{c:16,d:'dificil',r:true,q:'A responsabilidade do profissional de enfermagem pode ser apurada nas esferas ética, civil, penal e administrativa, de forma independente entre si.',e:'A absolvição em uma esfera não vincula automaticamente as demais.'},
+{c:16,d:'medio',r:true,q:'É direito do profissional recusar-se a exercer atividades em condições de trabalho que ofereçam risco à sua segurança ou à do paciente, comunicando formalmente o fato.',e:'Inclui ausência de EPI e dimensionamento inadequado.'},
+{c:16,d:'dificil',r:true,q:'A divulgação de imagem ou informação de paciente em rede social, ainda que sem identificação nominal, pode configurar quebra de sigilo profissional.',e:'Elementos indiretos podem permitir a identificação.'},
+{c:16,d:'medio',r:true,q:'O consentimento do paciente para procedimentos deve ser obtido após informação clara sobre finalidade, riscos e alternativas.',e:'Decorre do respeito à autonomia.'},
+{c:16,d:'dificil',r:true,q:'A objeção de consciência não pode ser invocada em situação de urgência ou emergência, nem quando implicar risco de dano ao paciente.',e:'Limite expresso ao exercício desse direito.'},
+{c:16,d:'medio',r:true,q:'A rasura no prontuário deve ser evitada; havendo erro, registra-se a correção de forma identificável, sem apagar ou sobrescrever o conteúdo anterior.',e:'Rasura compromete o valor probatório do documento.'},
+{c:16,d:'dificil',r:true,q:'Os cuidados paliativos visam ao alívio do sofrimento e à qualidade de vida, não configurando abandono terapêutico nem abreviação da vida.',e:'Distinguem-se da eutanásia, vedada ao profissional.'},
+
+/* ---------- 17 — FUNDAMENTOS (aprofundamento) ---------- */
+{c:17,d:'medio',r:true,q:'A passagem de plantão deve informar intercorrências, condutas realizadas, pendências e estado atual dos pacientes.',e:'Falhas de comunicação estão entre as principais causas de eventos adversos.'},
+{c:17,d:'dificil',r:true,q:'A identificação do paciente por pulseira é uma das metas internacionais de segurança do paciente e deve ser conferida antes de qualquer procedimento.',e:'São seis metas, entre elas cirurgia segura e prevenção de quedas e lesão por pressão.'},
+{c:17,d:'medio',r:true,q:'A prevenção de quedas em ambiente hospitalar inclui grades elevadas, campainha ao alcance, piso seco, iluminação adequada e calçado antiderrapante.',e:'A avaliação do risco deve ser feita na admissão e reavaliada periodicamente.'},
+{c:17,d:'dificil',r:true,q:'A aspiração de vias aéreas deve ser realizada com técnica asséptica, por tempo limitado, aplicando-se a sucção apenas na retirada da sonda.',e:'A aspiração prolongada provoca hipoxemia e trauma de mucosa.'},
+{c:17,d:'medio',r:true,q:'A traqueostomia exige cuidados com fixação, umidificação e aspiração, além de vigilância quanto a sangramento e decanulação acidental.',e:'Deve haver cânula reserva à beira do leito.'},
+{c:17,d:'dificil',r:true,q:'A dieta enteral deve ser administrada com a cabeceira elevada e o resíduo gástrico avaliado conforme protocolo, suspendendo-se a oferta diante de sinais de intolerância.',e:'Distensão, vômitos e diarreia indicam intolerância.'},
+{c:17,d:'medio',r:true,q:'A punção venosa periférica deve preferir veias de membros superiores, evitando-se áreas de flexão, membros com fístula, mastectomia ou lesão.',e:'A escolha do menor calibre adequado reduz o risco de flebite.'},
+{c:17,d:'dificil',r:true,q:'A troca do curativo de cateter venoso central deve seguir periodicidade definida em protocolo e ser antecipada sempre que estiver sujo, úmido ou solto.',e:'A inspeção diária do sítio é obrigatória.'},
+{c:17,d:'medio',r:true,q:'A coleta de urina para exame de rotina deve ser preferencialmente do jato médio da primeira urina da manhã, após higiene íntima.',e:'Reduz a contaminação por flora perineal.'},
+{c:17,d:'dificil',r:true,q:'A glicemia capilar exige antissepsia do local, descarte imediato da lanceta em coletor rígido e uso de tira reagente dentro do prazo de validade.',e:'A primeira gota pode ser desprezada conforme protocolo.'},
+{c:17,d:'medio',r:true,q:'O preparo do corpo após o óbito deve preservar a dignidade do falecido, observar as precauções padrão e respeitar as crenças da família.',e:'Registra-se o horário e comunica-se conforme rotina institucional.'},
+{c:17,d:'dificil',r:true,q:'A movimentação e a transferência de pacientes devem empregar mecânica corporal adequada e dispositivos auxiliares, prevenindo lesões no trabalhador.',e:'A NR-32 trata da prevenção de riscos ergonômicos nos serviços de saúde.'}
+
+]);

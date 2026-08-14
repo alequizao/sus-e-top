@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SUS É TOP</title>
+<meta name="description" content="App de estudos do SUS: apostila completa, questionários Sim/Não por dificuldade, revisão espaçada, caderno de erros e exportação em PDF.">
+<link rel="stylesheet" href="assets/style.css?v=821">
+</head>
+<body>
+
+<main class="papel inicio">
+
+ <div class="hero">
+
+  <!-- ===== cabeçalho de usuário ===== -->
+  <div class="usuario">
+    <div class="av">SU</div>
+    <div class="txt">
+      <p class="ola" id="ola">Olá!</p>
+      <p class="sub" id="sub-ola">Como vão os estudos hoje?</p>
+    </div>
+    <a class="sino" href="revisao.html" aria-label="Revisões"><span data-ico="sino" data-ico-tam="19"></span><span class="pt oculto" id="pt-sino"></span></a>
+  </div>
+
+  <!-- ===== busca ===== -->
+  <div class="busca">
+    <label class="campo"><span data-ico="busca" data-ico-tam="19"></span>
+      <input type="search" id="busca" placeholder="Buscar tema, lei ou questão…" autocomplete="off">
+    </label>
+    <a class="filtro destaque" href="quiz.html" aria-label="Montar questionário"><span data-ico="filtros" data-ico-tam="19"></span></a>
+  </div>
+
+ </div><!-- /hero -->
+
+ <div class="folha">
+
+  <div id="resultados"></div>
+
+  <div id="bloco-padrao">
+
+    <!-- ===== categorias ===== -->
+    <div class="sec">
+      <h2>O que você quer estudar hoje?</h2>
+      <a href="categorias.html">Ver tudo +</a>
+    </div>
+    <div class="categorias">
+      <a class="categoria" href="01-cf-194-195.html"><span class="bolha b-menta" data-ico="balanca" data-ico-tam="26"></span><b>CF/88</b><small>194-195</small></a>
+      <a class="categoria" href="02-lei-8080.html"><span class="bolha b-azul" data-ico="livro" data-ico-tam="26"></span><b>Lei 8.080</b><small>Orgânica</small></a>
+      <a class="categoria" href="03-lei-8142.html"><span class="bolha b-roxo" data-ico="urna" data-ico-tam="26"></span><b>Lei 8.142</b><small>Controle</small></a>
+      <a class="categoria" href="06-pnab.html"><span class="bolha b-amarelo" data-ico="hospital" data-ico-tam="26"></span><b>PNAB</b><small>Atenção</small></a>
+    </div>
+
+    <!-- ===== blocos do edital ===== -->
+    <div class="sec">
+      <h2>Blocos do edital</h2>
+      <a href="estudos.html">Ver capítulos +</a>
+    </div>
+    <div class="blocos" id="blocos-edital"></div>
+
+    <!-- ===== carrossel de banners ===== -->
+    <div class="carrossel" id="carrossel" style="margin-top:20px">
+      <div class="banner">
+        <p class="rot">Banco com <span id="n-questoes">168</span> questões</p>
+        <p class="grande">Sim ou Não</p>
+        <p>Escolha tema, quantidade e dificuldade.</p>
+        <a class="pill" href="quiz.html">Começar</a>
+        <span class="emoji" data-ico="duvida" data-ico-tam="56"></span>
+      </div>
+      <div class="banner roxo">
+        <p class="rot">Método comprovado</p>
+        <p class="grande">Revisão espaçada</p>
+        <p>As questões voltam na hora certa de revisar.</p>
+        <a class="pill" href="revisao.html">Revisar</a>
+        <span class="emoji" data-ico="ciclo" data-ico-tam="56"></span>
+      </div>
+      <div class="banner coral">
+        <p class="rot">Tudo em um arquivo</p>
+        <p class="grande">Apostila em PDF</p>
+        <p>Todos os capítulos em uma página, prontos para imprimir.</p>
+        <a class="pill" href="apostila-completa.html">Baixar</a>
+        <span class="emoji" data-ico="pdf" data-ico-tam="56"></span>
+      </div>
+    </div>
+    <div class="bolinhas" id="bolinhas"><i class="on"></i><i></i><i></i></div>
+
+    <!-- ===== meta do dia ===== -->
+    <div class="sec">
+      <h2>Meta do dia</h2>
+      <a href="progresso.html">Ver progresso +</a>
+    </div>
+    <div class="cartao">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px">
+        <b id="leg-meta" style="font-size:13.5px">0 de 20 questões</b>
+        <span id="fogo" style="background:var(--amarelo-claro);color:var(--ambar);font-weight:700;font-size:11.5px;padding:5px 12px;border-radius:99px;display:inline-flex;align-items:center;gap:5px"><span data-ico="fogo" data-ico-tam="14"></span><span id="fogo-n">0 dias</span></span>
+      </div>
+      <div class="prog"><i id="barra" style="width:0%"></i></div>
+      <p id="frase-meta" style="margin:9px 0 0;font-size:11.5px;color:var(--texto-fraco)">Responda algumas questões para iniciar sua sequência.</p>
+    </div>
+
+    <!-- ===== capítulos em destaque ===== -->
+    <div class="sec">
+      <h2>Continue estudando</h2>
+      <a href="estudos.html">Ver tudo +</a>
+    </div>
+    <div class="carrossel" id="destaques"></div>
+
+    <!-- ===== mais cobrados ===== -->
+    <div class="sec">
+      <h2>Mais cobrados em prova</h2>
+      <a href="estudos.html">Ver tudo +</a>
+    </div>
+    <div id="populares"></div>
+
+    <!-- ===== instalar ===== -->
+    <div class="sec"><h2>Instalar o app</h2></div>
+    <div class="cartao">
+      <p style="margin:0 0 12px;font-size:12.5px;color:var(--texto-fraco)">
+        Funciona <strong>offline</strong> depois da primeira visita. iPhone: <em>Compartilhar → Adicionar à Tela de Início</em>. Android: menu do Chrome → <em>Instalar aplicativo</em>.
+      </p>
+      <button class="btn oculto" id="instalar-app" type="button"><span data-ico="baixar" data-ico-tam="18"></span>Instalar no dispositivo</button>
+    </div>
+
+    <div class="rodape">
+      SUS É TOP · Material baseado na legislação vigente. Confira o edital do seu concurso.
+    </div>
+  </div>
+
+ </div><!-- /folha -->
+
+</main>
+
+<script src="assets/questoes.js?v=821"></script>
+<script src="assets/questoes-enfermagem.js?v=821"></script>
+<script src="assets/questoes-enfermagem2.js?v=821"></script>
+<script src="assets/questoes-enfermagem3.js?v=821"></script>
+<script src="assets/questoes-basicas.js?v=821"></script>
+<script src="assets/questoes-enfermagem4.js?v=821"></script>
+<script src="assets/questoes-sus2.js?v=821"></script>
+<script src="assets/questoes-final.js?v=821"></script>
+<script src="assets/questoes-errado.js?v=821"></script>
+<script src="assets/dados.js?v=821"></script>
+<script src="assets/versao.js?v=821"></script>
+<script src="assets/icones.js?v=821"></script>
+<script src="assets/app.js?v=821"></script>
+<script>
+(function(){
+  var CAPS = window.APP_CAPS;
+
+  var h = new Date().getHours();
+  document.getElementById('ola').textContent = h < 12 ? 'Bom dia!' : h < 18 ? 'Boa tarde!' : 'Boa noite!';
+  document.getElementById('sub-ola').textContent =
+    h < 12 ? 'Bora começar o dia estudando?' : h < 18 ? 'Que tal revisar um capítulo?' : 'Foco no SUS antes de dormir 💪';
+
+  document.getElementById('n-questoes').textContent = DADOS.questoes().length;
+
+  var r = DADOS.resumo();
+  if (r.caderno > 0 || r.paraRevisar > 0) document.getElementById('pt-sino').classList.remove('oculto');
+
+  var m = DADOS.meta().diaria, f = DADOS.feitasHoje();
+  document.getElementById('barra').style.width = Math.min(100, f/m*100) + '%';
+  document.getElementById('leg-meta').textContent = f + ' de ' + m + ' questões';
+  document.getElementById('frase-meta').textContent = f >= m
+    ? 'Meta batida hoje! 🎉' : 'Faltam ' + (m - f) + ' questões para bater a meta.';
+  var s = DADOS.streak();
+  document.getElementById('fogo-n').textContent = s.dias + (s.dias === 1 ? ' dia' : ' dias');
+
+  function cardProduto(c, i, stat){
+    var e = stat.aproveitamento === null ? 0 : Math.round(stat.aproveitamento / 20);
+    var cheias = Math.max(1, e);
+    return '<a class="produto" href="' + c.arq + '" style="flex:0 0 158px">' +
+        '<div class="capa ' + c.cor + '">' + ICO.svg(c.ico, 46) +
+          (stat.lido ? '<span class="selo ok">ESTUDADO</span>' : '<span class="selo">CAP ' + (i+1) + '</span>') +
+        '</div>' +
+        '<div class="info">' +
+          '<b>' + c.titulo + '</b>' +
+          '<div class="estrelas">' + '★'.repeat(cheias) + '☆'.repeat(5 - cheias) +
+            '<small>' + (stat.aproveitamento === null ? 'novo' : stat.aproveitamento + '%') + '</small></div>' +
+          '<div class="linha" style="margin-top:6px">' +
+            '<span class="preco">' + stat.totalQuestoes + ' questões</span>' +
+            '<span class="carrinho">›</span>' +
+          '</div>' +
+        '</div></a>';
+  }
+
+  /* ---- blocos do edital: SUS, Enfermagem e Básicas ---- */
+  var ESTILO_BLOCO = {
+    sus: { ico:'balanca',  cor:'b-menta',  sub:'CF/88, Leis 8.080 e 8.142, PNAB' },
+    enf: { ico:'coracao',  cor:'b-coral',  sub:'Biossegurança, medicamentos, urgência…' },
+    bas: { ico:'texto',    cor:'b-azul',   sub:'Português, lógica, informática e atualidades' }
+  };
+  document.getElementById('blocos-edital').innerHTML = DADOS.BLOCOS.map(function(b){
+    var e = ESTILO_BLOCO[b.id] || { ico:'livro', cor:'b-azul', sub:'' };
+    var qtd = DADOS.questoes().filter(function(q){ return b.caps.indexOf(q.c) !== -1; }).length;
+    return '<a class="bloco-card" href="quiz.html?bloco=' + b.id + '">' +
+      '<span class="capa ' + e.cor + '">' + ICO.svg(e.ico, 26) + '</span>' +
+      '<span class="txt"><b>' + b.t + '</b><span>' + e.sub + '</span></span>' +
+      '<span class="qtd">' + qtd + '<small>questões</small></span></a>';
+  }).join('');
+
+  var stats = DADOS.porCapitulo();
+  document.getElementById('destaques').innerHTML =
+    CAPS.map(function(c,i){ return cardProduto(c, i, stats[i]); }).join('');
+
+  var POP = [
+    { i:1, t:'Princípios do art. 7º', s:'Lei nº 8.080/1990' },
+    { i:2, t:'Conselhos e Conferências', s:'Lei nº 8.142/1990' },
+    { i:5, t:'PNAB: princípios e diretrizes', s:'Portaria nº 2.436/2017' },
+    { i:0, t:'Competências do SUS (art. 200)', s:'Constituição Federal' },
+    { i:6, t:'Segurança do paciente', s:'Portaria nº 529/2013' }
+  ];
+  document.getElementById('populares').innerHTML = POP.map(function(p){
+    var c = CAPS[p.i];
+    return '<a class="linha-item" href="' + c.arq + '">' +
+      '<span class="capa ' + c.cor + '">' + ICO.svg(c.ico, 26) + '</span>' +
+      '<span class="txt"><b>' + p.t + '</b><span>' + p.s + '</span></span>' +
+      '<span class="seta">›</span></a>';
+  }).join('');
+
+  var car = document.getElementById('carrossel');
+  var bol = document.getElementById('bolinhas').children;
+  car.addEventListener('scroll', function(){
+    var i = Math.round(car.scrollLeft / (car.scrollWidth / bol.length));
+    for (var k = 0; k < bol.length; k++) bol[k].classList.toggle('on', k === Math.min(i, bol.length-1));
+  });
+
+  var TEMAS = [
+    {t:'Seguridade social e objetivos (art. 194)', u:'01-cf-194-195.html'},
+    {t:'Financiamento da seguridade (art. 195)', u:'01-cf-194-195.html'},
+    {t:'Competências do SUS (art. 200)', u:'01-cf-194-195.html'},
+    {t:'Determinantes e condicionantes da saúde', u:'02-lei-8080.html'},
+    {t:'Princípios do art. 7º da Lei 8.080', u:'02-lei-8080.html'},
+    {t:'Vigilância sanitária e epidemiológica', u:'02-lei-8080.html'},
+    {t:'Competências da União, Estados e Municípios', u:'02-lei-8080.html'},
+    {t:'Conferência e Conselho de Saúde', u:'03-lei-8142.html'},
+    {t:'Paridade dos usuários (50%)', u:'03-lei-8142.html'},
+    {t:'Requisitos para receber recursos', u:'03-lei-8142.html'},
+    {t:'Universalidade, integralidade e equidade', u:'04-principios-diretrizes-sus.html'},
+    {t:'Decreto nº 7.508/2011 e Região de Saúde', u:'04-principios-diretrizes-sus.html'},
+    {t:'Linha do tempo do SUS', u:'04-principios-diretrizes-sus.html'},
+    {t:'Redes de Atenção à Saúde (RAS)', u:'05-redes-atencao-saude.html'},
+    {t:'RAPS, RUE e Rede Cegonha', u:'05-redes-atencao-saude.html'},
+    {t:'Condições crônicas e estratificação de risco', u:'05-redes-atencao-saude.html'},
+    {t:'PNAB: princípios e diretrizes', u:'06-pnab.html'},
+    {t:'Equipe de Saúde da Família e ACS', u:'06-pnab.html'},
+    {t:'Atributos da APS (Starfield)', u:'06-pnab.html'},
+    {t:'Política Nacional de Humanização', u:'07-humanizacao-seguranca.html'},
+    {t:'Acolhimento e classificação de risco', u:'07-humanizacao-seguranca.html'},
+    {t:'Segurança do paciente e NOTIVISA', u:'07-humanizacao-seguranca.html'}
+  ];
+
+  var campo = document.getElementById('busca');
+  var caixa = document.getElementById('resultados');
+  var padrao = document.getElementById('bloco-padrao');
+  var norm = function(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); };
+
+  campo.addEventListener('input', function(){
+    var q = campo.value.trim();
+    caixa.innerHTML = '';
+    if (q.length < 2){ padrao.classList.remove('oculto'); return; }
+    padrao.classList.add('oculto');
+    var alvo = norm(q);
+
+    TEMAS.filter(function(t){ return norm(t.t).indexOf(alvo) !== -1; }).slice(0,8).forEach(function(t){
+      caixa.insertAdjacentHTML('beforeend',
+        '<a class="linha-item" href="' + t.u + '">' +
+        '<span class="capa b-menta">' + ICO.svg('livro',26) + '</span>' +
+        '<span class="txt"><b>' + t.t + '</b><span>Abrir no material</span></span>' +
+        '<span class="seta">›</span></a>');
+    });
+
+    DADOS.questoes().filter(function(x){ return norm(x.q).indexOf(alvo) !== -1; }).slice(0,6).forEach(function(x){
+      caixa.insertAdjacentHTML('beforeend',
+        '<div class="cartao" style="margin-bottom:10px">' +
+        '<b style="font-size:13px;display:block;margin-bottom:5px">' + ICO.svg('duvida',15) + ' ' + x.q + '</b>' +
+        '<span style="font-size:11.5px;color:var(--texto-fraco)">Gabarito: <strong>' + (x.r ? 'SIM' : 'NÃO') + '</strong> — ' + x.e + '</span></div>');
+    });
+
+    if (!caixa.children.length){
+      caixa.innerHTML = '<div class="vazio"><span class="emoji" data-ico="busca" data-ico-tam="56"></span>Nada encontrado para “' + q + '”.</div>';
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revisão e Caderno de Erros | SUS É TOP</title>
+<link rel="stylesheet" href="assets/style.css?v=821">
+<style>
+.acao-topo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.acao-topo a{
+  border-radius:var(--r);padding:18px 16px;text-decoration:none;color:#fff;position:relative;overflow:hidden;
+  background:linear-gradient(120deg,#2FD3A4,#1FB88F);
+}
+.acao-topo a.err{background:linear-gradient(120deg,#FF9A8B,#FF6B6B)}
+.acao-topo a::after{content:'';position:absolute;right:-24px;bottom:-34px;width:96px;height:96px;border-radius:50%;background:rgba(255,255,255,.15)}
+.acao-topo .qtd{font-size:28px;font-weight:800;line-height:1;display:block}
+.acao-topo b{display:block;font-size:14px;margin-top:6px}
+.acao-topo span.leg{font-size:11px;opacity:.92}
+
+.erro-card{background:var(--papel);border-radius:var(--r);padding:14px 16px;margin-bottom:11px;box-shadow:var(--sombra);border-left:4px solid var(--coral)}
+.erro-card .cab{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center}
+.erro-card .q{font-weight:600;font-size:13.5px;margin:0 0 8px}
+.erro-card .gab{font-size:12.5px;margin:0;color:var(--texto-fraco)}
+.erro-card .gab b{color:var(--texto)}
+.erro-card .rod{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;font-size:11px;color:var(--texto-fraco)}
+.mini{background:var(--fundo);border:0;border-radius:99px;padding:6px 13px;font-size:11px;cursor:pointer;color:var(--texto-fraco);font-family:inherit}
+.mini:hover{background:var(--coral-claro);color:var(--vermelho)}
+.caixa-leitner{font-size:9.5px;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--menta-claro);color:var(--menta-esc)}
+@media (max-width:520px){ .acao-topo{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<main class="papel">
+
+  <header class="cabecalho">
+    <p class="eyebrow">Revisão</p>
+    <h1>Revisão espaçada e caderno de erros</h1>
+    <p class="sub">Cada questão que você acerta sobe de caixa e volta mais tarde; cada erro volta para a primeira caixa e retorna no dia seguinte.</p>
+  </header>
+
+  <div class="acao-topo">
+    <a href="quiz.html?modo=revisao">
+      <span class="qtd" id="qtd-rev">0</span>
+      <b style="display:inline-flex;align-items:center;gap:6px"><span data-ico="ciclo" data-ico-tam="17"></span>Revisar hoje</b>
+      <span class="leg">Revisões que venceram</span>
+    </a>
+    <a class="err" href="quiz.html?modo=erros">
+      <span class="qtd" id="qtd-err">0</span>
+      <b>📕 Refazer erros</b>
+      <span class="leg">Seu caderno de erros</span>
+    </a>
+  </div>
+
+  <div class="box dica">
+    <p class="titulo">Como funciona a revisão espaçada</p>
+    <p>São <strong>5 caixas</strong> (sistema de Leitner). Ao acertar, a questão sobe uma caixa e só reaparece depois de <strong>1, 2, 4, 8 ou 16 dias</strong>. Ao errar, ela volta para a <strong>caixa 1</strong> e reaparece no dia seguinte. Uma questão sai do caderno de erros depois de <strong>2 acertos</strong>.</p>
+  </div>
+
+  <h2>Caderno de erros <span style="font-weight:400;font-size:15px;color:var(--texto-fraco)" id="rot-caderno"></span></h2>
+
+  <div class="chips no-print" style="margin-bottom:16px" id="filtro-cap"></div>
+
+  <div id="lista"></div>
+
+  <div class="vazio oculto" id="vazio">
+    <span class="emoji">🎉</span>
+    <p><strong>Seu caderno de erros está vazio.</strong><br>Responda questões na área de questionário — o que você errar vem parar aqui automaticamente.</p>
+    <p style="margin-top:16px"><a class="btn" href="quiz.html">Ir para as questões</a></p>
+  </div>
+
+</main>
+
+<script src="assets/questoes.js?v=821"></script>
+<script src="assets/questoes-enfermagem.js?v=821"></script>
+<script src="assets/questoes-enfermagem2.js?v=821"></script>
+<script src="assets/questoes-enfermagem3.js?v=821"></script>
+<script src="assets/questoes-basicas.js?v=821"></script>
+<script src="assets/questoes-enfermagem4.js?v=821"></script>
+<script src="assets/questoes-sus2.js?v=821"></script>
+<script src="assets/questoes-final.js?v=821"></script>
+<script src="assets/questoes-errado.js?v=821"></script>
+<script src="assets/dados.js?v=821"></script>
+<script src="assets/versao.js?v=821"></script>
+<script src="assets/icones.js?v=821"></script>
+<script src="assets/app.js?v=821"></script>
+<script>
+(function(){
+  var filtro = 0; // 0 = todos
+
+  function stats(){
+    try { return JSON.parse(localStorage.getItem('susetop_stats') || '{}'); } catch(e){ return {}; }
+  }
+  function erros(){
+    try { return JSON.parse(localStorage.getItem('susetop_erros') || '[]'); } catch(e){ return []; }
+  }
+
+  function montarFiltro(){
+    var box = document.getElementById('filtro-cap');
+    var t = document.createElement('button');
+    t.className = 'chip sel'; t.dataset.f = '0'; t.textContent = 'Todos';
+    box.appendChild(t);
+    DADOS.CAPITULOS.forEach(function(c){
+      var n = erros().filter(function(id){ var q = DADOS.porId(id); return q && q.c === c.n; }).length;
+      if (!n) return;
+      var el = document.createElement('button');
+      el.className = 'chip'; el.dataset.f = c.n;
+      el.innerHTML = 'Cap. ' + c.n + ' (' + n + ')';
+      box.appendChild(el);
+    });
+    box.addEventListener('click', function(ev){
+      var a = ev.target.closest('.chip');
+      if (!a) return;
+      box.querySelectorAll('.chip').forEach(function(e){ e.classList.remove('sel'); });
+      a.classList.add('sel');
+      filtro = parseInt(a.dataset.f, 10);
+      render();
+    });
+  }
+
+  function render(){
+    var st = stats();
+    var ids = erros().filter(function(id){
+      var q = DADOS.porId(id);
+      return q && (filtro === 0 || q.c === filtro);
+    });
+
+    var lista = document.getElementById('lista');
+    lista.innerHTML = '';
+
+    document.getElementById('qtd-rev').textContent = DADOS.filtrar({ modo:'revisao' }).length;
+    document.getElementById('qtd-err').textContent = erros().length;
+    document.getElementById('rot-caderno').textContent = '(' + ids.length + ')';
+
+    document.getElementById('vazio').classList.toggle('oculto', erros().length > 0);
+
+    ids.forEach(function(id){
+      var q = DADOS.porId(id);
+      var s = st[id] || { a:0, e:0, box:1, prox:'—' };
+      var d = document.createElement('div');
+      d.className = 'erro-card';
+      d.innerHTML =
+        '<div class="cab">' +
+          '<span class="tag cap">Cap. ' + q.c + '</span>' +
+          '<span class="tag ' + q.d + '">' + ({facil:'Fácil',medio:'Médio',dificil:'Difícil'}[q.d]) + '</span>' +
+          '<span class="caixa-leitner">Caixa ' + s.box + '/5</span>' +
+        '</div>' +
+        '<p class="q">' + q.q + '</p>' +
+        '<p class="gab">Gabarito: <b>' + (q.r ? 'SIM' : 'NÃO') + '</b> — ' + q.e + '</p>' +
+        '<div class="rod">' +
+          '<span>' + s.a + ' acerto(s) · ' + s.e + ' erro(s) · próxima revisão em ' + s.prox + '</span>' +
+          '<button class="mini" data-remover="' + id + '">Remover</button>' +
+        '</div>';
+      lista.appendChild(d);
+    });
+  }
+
+  document.addEventListener('click', function(ev){
+    var b = ev.target.closest('[data-remover]');
+    if (!b) return;
+    var id = b.dataset.remover;
+    var e = erros();
+    var i = e.indexOf(id);
+    if (i !== -1){ e.splice(i,1); localStorage.setItem('susetop_erros', JSON.stringify(e)); }
+    render();
+  });
+
+  montarFiltro();
+  render();
+})();
+</script>
+</body>
+</html>

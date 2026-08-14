@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Capítulos | SUS É TOP</title>
+<link rel="stylesheet" href="assets/style.css?v=821">
+</head>
+<body>
+
+<main class="papel">
+
+  <!-- filtros em pílula, como a tela "Category Products" -->
+  <div class="chips" id="blocos" style="margin-bottom:10px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px"></div>
+
+  <div class="chips" id="filtros" style="margin-bottom:16px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px">
+    <button class="chip sel" data-f="todos">Todos</button>
+    <button class="chip" data-f="novos">Não iniciados</button>
+    <button class="chip" data-f="andamento">Em andamento</button>
+    <button class="chip" data-f="lidos">Estudados</button>
+    <button class="chip" data-f="favoritos">Favoritos</button>
+  </div>
+
+  <div class="busca">
+    <label class="campo"><span data-ico="busca" data-ico-tam="19"></span>
+      <input type="search" id="busca" placeholder="Buscar capítulo…" autocomplete="off">
+    </label>
+    <a class="filtro" href="categorias.html" aria-label="Categorias">▦</a>
+  </div>
+
+  <div class="cartao" style="margin-bottom:18px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px">
+      <b style="font-size:13.5px">Seu avanço na apostila</b>
+      <span style="font-size:12px;color:var(--texto-fraco)" id="rot-avanco">0 de 7</span>
+    </div>
+    <div class="prog"><i id="barra-avanco" style="width:0%"></i></div>
+  </div>
+
+  <div class="sec"><h2>Capítulos</h2><a href="apostila-completa.html">Apostila em PDF +</a></div>
+
+  <div class="grid2" id="grade"></div>
+
+  <div class="vazio oculto" id="vazio"><span class="emoji" data-ico="busca" data-ico-tam="56"></span>Nenhum capítulo com esse filtro.</div>
+
+  <div class="sec"><h2>Ferramentas</h2></div>
+  <a class="linha-item" href="quiz.html">
+    <span class="capa b-menta" data-ico="duvida" data-ico-tam="24"></span>
+    <span class="txt"><b>Área de questionário</b><span>Sim ou Não, por tema e dificuldade</span></span>
+    <span class="seta">›</span>
+  </a>
+  <a class="linha-item" href="revisao.html">
+    <span class="capa b-coral" data-ico="ciclo" data-ico-tam="24"></span>
+    <span class="txt"><b>Revisão e caderno de erros</b><span>Revisão espaçada automática</span></span>
+    <span class="seta">›</span>
+  </a>
+  <a class="linha-item" href="apostila-completa.html">
+    <span class="capa b-azul" data-ico="pdf" data-ico-tam="24"></span>
+    <span class="txt"><b>Apostila completa</b><span>Todos os capítulos em um PDF</span></span>
+    <span class="seta">›</span>
+  </a>
+
+  <div class="rodape">
+    Toque em ⤓ na barra superior de qualquer capítulo para salvar como PDF.
+  </div>
+
+</main>
+
+<script src="assets/questoes.js?v=821"></script>
+<script src="assets/questoes-enfermagem.js?v=821"></script>
+<script src="assets/questoes-enfermagem2.js?v=821"></script>
+<script src="assets/questoes-enfermagem3.js?v=821"></script>
+<script src="assets/questoes-basicas.js?v=821"></script>
+<script src="assets/questoes-enfermagem4.js?v=821"></script>
+<script src="assets/questoes-sus2.js?v=821"></script>
+<script src="assets/questoes-final.js?v=821"></script>
+<script src="assets/questoes-errado.js?v=821"></script>
+<script src="assets/dados.js?v=821"></script>
+<script src="assets/versao.js?v=821"></script>
+<script src="assets/icones.js?v=821"></script>
+<script src="assets/app.js?v=821"></script>
+<script>
+(function(){
+  var CAPS = window.APP_CAPS;
+  var RESUMOS = {
+    1:'Seguridade social, art. 194, financiamento do art. 195 e arts. 196 a 200.',
+    2:'Conceito ampliado, princípios do art. 7º, competências e financiamento.',
+    3:'Conferências, Conselhos, paridade e requisitos de repasse.',
+    4:'Doutrinários, organizativos e Decreto nº 7.508/2011.',
+    5:'Componentes das RAS, redes temáticas e condições crônicas.',
+    6:'Portaria nº 2.436/2017, equipes, atribuições e atributos da APS.',
+    7:'PNH, acolhimento, PNSP e os seis protocolos básicos.'
+  };
+
+  var filtro = 'todos', termo = '', bloco = 'todos';
+
+  (function montarBlocos(){
+    var box = document.getElementById('blocos');
+    var html = '<button class="chip sel" data-b="todos">Todos os blocos</button>';
+    DADOS.BLOCOS.forEach(function(b){
+      html += '<button class="chip" data-b="' + b.id + '">' + b.t + '</button>';
+    });
+    box.innerHTML = html;
+    box.addEventListener('click', function(ev){
+      var c = ev.target.closest('.chip');
+      if (!c) return;
+      box.querySelectorAll('.chip').forEach(function(e){ e.classList.remove('sel'); });
+      c.classList.add('sel');
+      bloco = c.dataset.b;
+      render();
+    });
+  })();
+
+  function noBloco(n){
+    if (bloco === 'todos') return true;
+    var b = DADOS.BLOCOS.filter(function(x){ return x.id === bloco; })[0];
+    return !!b && b.caps.indexOf(n) !== -1;
+  }
+
+
+  function favoritos(){
+    try { return JSON.parse(localStorage.getItem('susetop_fav') || '[]'); } catch(e){ return []; }
+  }
+  function alternarFav(n){
+    var f = favoritos(), i = f.indexOf(n);
+    if (i === -1) f.push(n); else f.splice(i,1);
+    localStorage.setItem('susetop_fav', JSON.stringify(f));
+  }
+
+  function render(){
+    var stats = DADOS.porCapitulo();
+    var favs = favoritos();
+    var grade = document.getElementById('grade');
+    grade.innerHTML = '';
+    var mostrados = 0;
+
+    CAPS.forEach(function(c, i){
+      var st = stats[i];
+      var n = i + 1;
+      var iniciado = st.vistas > 0;
+
+      if (!noBloco(n)) return;
+      if (filtro === 'novos' && (iniciado || st.lido)) return;
+      if (filtro === 'andamento' && (!iniciado || st.lido)) return;
+      if (filtro === 'lidos' && !st.lido) return;
+      if (filtro === 'favoritos' && favs.indexOf(n) === -1) return;
+      if (termo && (c.titulo + ' ' + RESUMOS[n]).toLowerCase().indexOf(termo) === -1) return;
+
+      mostrados++;
+      var e = st.aproveitamento === null ? 0 : Math.round(st.aproveitamento / 20);
+      var cheias = Math.max(1, e);
+      var fav = favs.indexOf(n) !== -1;
+
+      var a = document.createElement('a');
+      a.className = 'produto';
+      a.href = c.arq;
+      a.innerHTML =
+        '<div class="capa ' + c.cor + '">' + ICO.svg(c.ico, 46) +
+          '<button class="fav' + (fav ? ' on' : '') + '" data-fav="' + n + '" aria-label="Favoritar">' + (fav ? '♥' : '♡') + '</button>' +
+          (st.lido ? '<span class="selo ok">ESTUDADO</span>' : '<span class="selo">CAP ' + n + '</span>') +
+        '</div>' +
+        '<div class="info">' +
+          '<b>' + c.titulo + '</b>' +
+          '<div class="estrelas">' + '★'.repeat(cheias) + '☆'.repeat(5 - cheias) +
+            '<small>' + (st.aproveitamento === null ? 'novo' : st.aproveitamento + '%') + '</small></div>' +
+          '<div class="prog" style="margin:7px 0"><i style="width:' + Math.round(st.vistas / st.totalQuestoes * 100) + '%"></i></div>' +
+          '<div class="linha">' +
+            '<span class="preco">' + st.totalQuestoes + ' questões</span>' +
+            '<span class="carrinho">›</span>' +
+          '</div>' +
+        '</div>';
+      grade.appendChild(a);
+    });
+
+    document.getElementById('vazio').classList.toggle('oculto', mostrados > 0);
+
+    var lidos = stats.filter(function(c){ return c.lido; }).length;
+    document.getElementById('rot-avanco').textContent = lidos + ' de 7 estudados';
+    document.getElementById('barra-avanco').style.width = (lidos / 7 * 100) + '%';
+  }
+
+  document.getElementById('filtros').addEventListener('click', function(ev){
+    var c = ev.target.closest('.chip');
+    if (!c) return;
+    this.querySelectorAll('.chip').forEach(function(e){ e.classList.remove('sel'); });
+    c.classList.add('sel');
+    filtro = c.dataset.f;
+    render();
+  });
+
+  document.getElementById('busca').addEventListener('input', function(){
+    termo = this.value.trim().toLowerCase();
+    render();
+  });
+
+  document.addEventListener('click', function(ev){
+    var b = ev.target.closest('[data-fav]');
+    if (!b) return;
+    ev.preventDefault();
+    alternarFav(parseInt(b.dataset.fav, 10));
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

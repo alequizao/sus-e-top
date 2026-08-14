@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Categorias | SUS É TOP</title>
+<link rel="stylesheet" href="assets/style.css?v=821">
+</head>
+<body>
+
+<main class="papel">
+
+  <div class="busca">
+    <label class="campo"><span data-ico="busca" data-ico-tam="19"></span>
+      <input type="search" id="busca" placeholder="Buscar categoria…" autocomplete="off">
+    </label>
+    <a class="filtro" href="estudos.html" aria-label="Lista de capítulos">☰</a>
+  </div>
+
+  <div class="sec"><h2>Todas as categorias</h2></div>
+
+  <div class="categorias-2" id="grade">
+    <a class="categoria" href="01-cf-194-195.html" data-nome="constituição federal seguridade social">
+      <span class="bolha b-menta" data-ico="balanca" data-ico-tam="26"></span><b>Constituição Federal</b><small>arts. 194 e 195</small>
+    </a>
+    <a class="categoria" href="02-lei-8080.html" data-nome="lei 8080 orgânica da saúde">
+      <span class="bolha b-azul" data-ico="livro" data-ico-tam="26"></span><b>Lei nº 8.080/1990</b><small>Lei Orgânica</small>
+    </a>
+    <a class="categoria" href="03-lei-8142.html" data-nome="lei 8142 controle social conselhos">
+      <span class="bolha b-roxo" data-ico="urna" data-ico-tam="26"></span><b>Lei nº 8.142/1990</b><small>Controle social</small>
+    </a>
+    <a class="categoria" href="04-principios-diretrizes-sus.html" data-nome="princípios diretrizes sus">
+      <span class="bolha b-coral" data-ico="alvo" data-ico-tam="26"></span><b>Princípios do SUS</b><small>e diretrizes</small>
+    </a>
+    <a class="categoria" href="05-redes-atencao-saude.html" data-nome="redes de atenção ras raps rue">
+      <span class="bolha b-laranja" data-ico="rede" data-ico-tam="26"></span><b>Redes de Atenção</b><small>RAS</small>
+    </a>
+    <a class="categoria" href="06-pnab.html" data-nome="pnab atenção básica saúde da família">
+      <span class="bolha b-amarelo" data-ico="hospital" data-ico-tam="26"></span><b>PNAB</b><small>Atenção Básica</small>
+    </a>
+    <a class="categoria" href="07-humanizacao-seguranca.html" data-nome="humanização segurança do paciente pnh">
+      <span class="bolha b-rosa" data-ico="maos" data-ico-tam="26"></span><b>Humanização</b><small>e segurança</small>
+    </a>
+    <a class="categoria" href="quiz.html" data-nome="questionário questões simulado">
+      <span class="bolha b-menta" data-ico="duvida" data-ico-tam="26"></span><b>Questionário</b><small>Sim ou Não</small>
+    </a>
+    <a class="categoria" href="revisao.html" data-nome="revisão caderno de erros">
+      <span class="bolha b-coral" data-ico="ciclo" data-ico-tam="26"></span><b>Revisão</b><small>Caderno de erros</small>
+    </a>
+    <a class="categoria" href="progresso.html" data-nome="progresso estatísticas desempenho">
+      <span class="bolha b-azul" data-ico="grafico" data-ico-tam="26"></span><b>Progresso</b><small>Estatísticas</small>
+    </a>
+    <a class="categoria" href="apostila-completa.html" data-nome="apostila completa pdf">
+      <span class="bolha b-roxo" data-ico="pdf" data-ico-tam="26"></span><b>Apostila</b><small>PDF completo</small>
+    </a>
+    <a class="categoria" href="quiz.html?modo=revisao" data-nome="simulado prova treino">
+      <span class="bolha b-amarelo" data-ico="relogio" data-ico-tam="26"></span><b>Simulado</b><small>Sem gabarito</small>
+    </a>
+  </div>
+
+  <div class="vazio oculto" id="vazio"><span class="emoji" data-ico="busca" data-ico-tam="56"></span>Nenhuma categoria encontrada.</div>
+
+</main>
+
+<script src="assets/questoes.js?v=821"></script>
+<script src="assets/questoes-enfermagem.js?v=821"></script>
+<script src="assets/questoes-enfermagem2.js?v=821"></script>
+<script src="assets/questoes-enfermagem3.js?v=821"></script>
+<script src="assets/questoes-basicas.js?v=821"></script>
+<script src="assets/questoes-enfermagem4.js?v=821"></script>
+<script src="assets/questoes-sus2.js?v=821"></script>
+<script src="assets/questoes-final.js?v=821"></script>
+<script src="assets/questoes-errado.js?v=821"></script>
+<script src="assets/dados.js?v=821"></script>
+<script src="assets/versao.js?v=821"></script>
+<script src="assets/icones.js?v=821"></script>
+<script src="assets/app.js?v=821"></script>
+<script>
+document.getElementById('busca').addEventListener('input', function(){
+  var t = this.value.trim().toLowerCase();
+  var vis = 0;
+  document.querySelectorAll('#grade .categoria').forEach(function(c){
+    var ok = !t || (c.dataset.nome + ' ' + c.textContent).toLowerCase().indexOf(t) !== -1;
+    c.classList.toggle('oculto', !ok);
+    if (ok) vis++;
+  });
+  document.getElementById('vazio').classList.toggle('oculto', vis > 0);
+});
+</script>
+</body>
+</html>
