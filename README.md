@@ -24,7 +24,7 @@ cobrindo legislação do SUS, enfermagem e conhecimentos gerais. Instalável com
 
 ## 📸 Tela
 
-[![SUS É TOP — apostila digital para concursos da área da saúde, desenvolvida por Alex Junior (alequizao)](https://image.thum.io/get/width/700/https://publishdev.com.br/sus/)](https://publishdev.com.br/sus/)
+[![SUS É TOP — apostila digital para concursos da área da saúde, desenvolvida por Alex Junior (alequizao)](screenshots/tela-principal.png)](https://publishdev.com.br/sus/)
 
 ## 📦 Manual de instalação
 
