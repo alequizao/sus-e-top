@@ -1,3 +1,7 @@
+/*
+ * SUS é Top · Desenvolvido por Alequizao <alequizao.dev@gmail.com>
+ * https://github.com/alequizao · © 2026 Alequizao. Todos os direitos reservados.
+ */
 /* SUS É TOP — Banco de questões Sim/Não
    c = capítulo (1..7) | d = dificuldade ('facil' | 'medio' | 'dificil')
    q = enunciado | r = resposta correta (true = SIM, false = NÃO) | e = explicação */

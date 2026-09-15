@@ -1,3 +1,7 @@
+/*
+ * SUS é Top · Desenvolvido por Alequizao <alequizao.dev@gmail.com>
+ * https://github.com/alequizao · © 2026 Alequizao. Todos os direitos reservados.
+ */
 /* SUS É TOP — Banco de questões de CONHECIMENTOS ESPECÍFICOS (Técnico em Enfermagem)
    Nível técnico, calibrado pelo caderno CEBRASPE — SESAU/AL 2021 (formato Certo/Errado).
 

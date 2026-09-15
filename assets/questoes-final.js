@@ -1,3 +1,7 @@
+/*
+ * SUS é Top · Desenvolvido por Alequizao <alequizao.dev@gmail.com>
+ * https://github.com/alequizao · © 2026 Alequizao. Todos os direitos reservados.
+ */
 /* SUS É TOP — parte 6 (final) — fechamento do banco em ~1.000 questões
    Cobertura complementar de todos os capítulos, nível técnico. */
 

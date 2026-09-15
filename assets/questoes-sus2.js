@@ -1,3 +1,7 @@
+/*
+ * SUS é Top · Desenvolvido por Alequizao <alequizao.dev@gmail.com>
+ * https://github.com/alequizao · © 2026 Alequizao. Todos os direitos reservados.
+ */
 /* SUS É TOP — LEGISLAÇÃO DO SUS e BÁSICAS (parte 5) — aprofundamento
    Reforça os capítulos 1 a 7 (SUS) e 18 a 21 (básicas) em nível técnico. */
 

@@ -1,3 +1,7 @@
+/*
+ * SUS é Top · Desenvolvido por Alequizao <alequizao.dev@gmail.com>
+ * https://github.com/alequizao · © 2026 Alequizao. Todos os direitos reservados.
+ */
 /* SUS É TOP — versão do app (fonte única da verdade).
    Para publicar uma alteração, rode:  ./bump.sh 7.2.0
    Isso atualiza este arquivo, o cache do service worker e o ?v= de todos

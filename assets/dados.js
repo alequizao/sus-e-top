@@ -1,3 +1,7 @@
+/*
+ * SUS é Top · Desenvolvido por Alequizao <alequizao.dev@gmail.com>
+ * https://github.com/alequizao · © 2026 Alequizao. Todos os direitos reservados.
+ */
 /* SUS É TOP — camada de dados (localStorage + sincronização opcional com a API)
    Implementa: estatísticas por questão e por assunto, caderno de erros,
    revisão espaçada (sistema de caixas de Leitner), streak e histórico de sessões. */

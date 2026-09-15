@@ -1,3 +1,7 @@
+/*
+ * SUS é Top · Desenvolvido por Alequizao <alequizao.dev@gmail.com>
+ * https://github.com/alequizao · © 2026 Alequizao. Todos os direitos reservados.
+ */
 /* SUS É TOP — biblioteca de ícones SVG (traço, 24x24, herda currentColor)
    Uso: <span data-ico="livro"></span>  ou  ICO.svg('livro', 22)
    Desenhados no padrão line/rounded (stroke 1.7), sem dependência externa. */

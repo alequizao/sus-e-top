@@ -1,3 +1,7 @@
+/*
+ * SUS é Top · Desenvolvido por Alequizao <alequizao.dev@gmail.com>
+ * https://github.com/alequizao · © 2026 Alequizao. Todos os direitos reservados.
+ */
 /* SUS É TOP — parte 7 — itens de gabarito NÃO (ERRADO)
    Objetivo duplo: fechar o banco em ~1.000 questões e equilibrar o gabarito,
    que estava concentrado em "SIM". No estilo CEBRASPE, o erro está sempre em

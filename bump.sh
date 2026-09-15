@@ -1,4 +1,6 @@
 #!/bin/bash
+# SUS é Top · Desenvolvido por Alequizao <alequizao.dev@gmail.com>
+# https://github.com/alequizao · © 2026 Alequizao. Todos os direitos reservados.
 # SUS É TOP — publica uma nova versão e FORÇA a atualização em todos os usuários.
 # uso:  ./bump.sh 7.2.0
 set -e

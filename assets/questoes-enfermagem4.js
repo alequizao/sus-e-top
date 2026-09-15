@@ -1,3 +1,7 @@
+/*
+ * SUS é Top · Desenvolvido por Alequizao <alequizao.dev@gmail.com>
+ * https://github.com/alequizao · © 2026 Alequizao. Todos os direitos reservados.
+ */
 /* SUS É TOP — CONHECIMENTOS ESPECÍFICOS (parte 4) — aprofundamento
    Reforça os capítulos 8 a 17 com itens de nível técnico e pegadinhas de banca. */
 
